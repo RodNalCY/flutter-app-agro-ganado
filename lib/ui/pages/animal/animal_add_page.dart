@@ -210,7 +210,7 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                                       Radius.circular(20),
                                     ),
                                   ),
-                                  labelText: "Buscar ",
+                                  labelText: "Buscar",
                                   prefixIcon: Icon(Icons.search),
                                 ),
                               ),
@@ -220,30 +220,6 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                             },
                           ),
                         ),
-                        // Container(
-                        //   child: DropdownSearch<String>(
-                        //     // key: dropDownKey,
-                        //     // selectedItem: "Menu",
-                        //     items: (filter, infiniteScrollProps) => [
-                        //       "Carne",
-                        //       "Leche",
-                        //       "Reproducción",
-                        //       "Lana",
-                        //     ],
-                        //     decoratorProps: DropDownDecoratorProps(
-                        //       decoration: InputDecoration(
-                        //         // labelText: 'Examples for: ',
-                        //         border: OutlineInputBorder(
-                        //           borderRadius: BorderRadius.circular(15),
-                        //         ),
-                        //       ),
-                        //     ),
-                        //     popupProps: PopupProps.menu(
-                        //       fit: FlexFit.loose,
-                        //       constraints: BoxConstraints(),
-                        //     ),
-                        //   ),
-                        // ),
                       ],
                     ),
                   ),
@@ -338,14 +314,16 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text("Productor", style: TextStyle(fontSize: 28)),
+                  Text("Predio", style: TextStyle(fontSize: 28)),
                   Container(
                     child: TextButton.icon(
                       style: TextButton.styleFrom(
                         foregroundColor: Colors.white,
                         backgroundColor: Colors.blue,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        showFormBottom(context);
+                      },
                       icon: const Icon(Icons.search, size: 25),
                       label: Container(
                         padding: EdgeInsets.only(right: 10),
@@ -423,19 +401,25 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
         padding: const EdgeInsets.all(10.0),
         child: Row(
           children: <Widget>[
-            Icon(Icons.account_circle, size: 50),
+            Icon(Icons.apartment, size: 45),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "GUTIERREZ CAZORLA, ANTHONY AGUSTÍN",
+                    "RUC 20123456789",
+                    style: TextStyle(fontWeight: FontWeight.w300),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    "EMPRESA GANADERA S.A.",
                     style: TextStyle(fontWeight: FontWeight.bold),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
-                    "DNI 72048328 | Arequipa, Arequipa, Arequipa | 1240 animales",
+                    "Arequipa, Arequipa, Arequipa | 1240 animales",
                     style: TextStyle(fontWeight: FontWeight.w300),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -484,6 +468,66 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
               child: Icon(Icons.edit, size: 30),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> showFormBottom(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (context) => Container(
+        width: MediaQuery.of(context).size.width,
+        height: 500,
+        color: Colors.white,
+        // child: RecipeForm(),
+        child: Container(
+          padding: EdgeInsets.all(10),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: <Widget>[
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: TextButton.icon(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.blue,
+                    ),
+                    onPressed: () {},
+                    icon: const Icon(Icons.add, size: 25),
+                    label: Container(
+                      padding: EdgeInsets.only(right: 10),
+                      child: const Text(
+                        'Agregar nuevo predio',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                Container(
+                  child: TextFormField(
+                    onTap: () {
+                      // abrir datepicker al tocar
+                    },
+                    decoration: InputDecoration(
+                      isDense: true,
+                      hint: Text("Buscar predios..."),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      prefixIcon: Icon(Icons.search, size: 25),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                buildInfoProductor(),
+                buildInfoProductor(),
+                buildInfoProductor(),
+              ],
+            ),
+          ),
         ),
       ),
     );
