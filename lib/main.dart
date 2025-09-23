@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:proinnovate_flutter_app/ui/pages/animal/animal_add_page.dart';
 import 'package:proinnovate_flutter_app/ui/pages/animal/animal_list_page.dart';
 import 'package:proinnovate_flutter_app/ui/pages/home/home_page.dart';
+import 'package:flutter_localizations/flutter_localizations.dart'; // 👈 este es el bueno
 
 void main() {
   runApp(const MyApp());
@@ -32,9 +34,19 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlueAccent),
       ),
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('es', ''), // 👈 Español
+        Locale('en', ''), // 👈 Inglés (opcional)
+      ],
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
       // home: HomePage(),
-      home: AnimalListPage(),
+      // home: AnimalListPage(),
+      home: AnimalAddPage(),
     );
   }
 }
