@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proinnovate_flutter_app/ui/pages/animal/animal_add_page.dart';
 
 class AnimalListPage extends StatefulWidget {
   const AnimalListPage({Key? key}) : super(key: key);
@@ -30,6 +31,18 @@ class _AnimalListPageState extends State<AnimalListPage> {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        heroTag: null,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AnimalAddPage()),
+          );
+        },
+        backgroundColor: Colors.lightBlue,
+        child: Icon(Icons.add, size: 32, color: Colors.white),
+        shape: const CircleBorder(),
       ),
     );
   }

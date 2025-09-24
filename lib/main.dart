@@ -44,9 +44,9 @@ class MyApp extends StatelessWidget {
         Locale('en', ''), // 👈 Inglés (opcional)
       ],
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      // home: HomePage(),
+      home: HomePage(),
       // home: AnimalListPage(),
-      home: AnimalAddPage(),
+      // home: AnimalAddPage(),
     );
   }
 }
