@@ -18,7 +18,15 @@ class _PredioPageState extends State<PredioPage> {
         ),
         backgroundColor: Colors.lightBlueAccent,
       ),
-      body: Container(child: Center(child: Text("Vista Predio"))),
+      body: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.apartment, size: 60),
+            Center(child: Text("Vista Predio")),
+          ],
+        ),
+      ),
     );
   }
 }

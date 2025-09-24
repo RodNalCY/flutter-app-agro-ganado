@@ -18,7 +18,15 @@ class _MedicalPageState extends State<MedicalPage> {
         ),
         backgroundColor: Colors.lightBlueAccent,
       ),
-      body: Container(child: Center(child: Text("Vista medical"))),
+      body: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.coronavirus, size: 60),
+            Center(child: Text("Vista medical")),
+          ],
+        ),
+      ),
     );
   }
 }

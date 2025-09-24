@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:proinnovate_flutter_app/ui/pages/animal/animal_add_page.dart';
 import 'package:proinnovate_flutter_app/ui/pages/animal/animal_list_page.dart';
-import 'package:proinnovate_flutter_app/ui/pages/predio/predio_page.dart';
 import 'package:proinnovate_flutter_app/ui/pages/medical/medical_page.dart';
+import 'package:proinnovate_flutter_app/ui/pages/predio/predio_page.dart';
 import 'package:proinnovate_flutter_app/ui/pages/setting/setting_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,15 +12,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePage extends State<HomePage> {
   int indexTap = 0;
-
   final List<Widget> widgetsChildren = [
-    AnimalListPage(), // index 0
-    PredioPage(), // index 1
-    AnimalAddPage(), // index 2 (lo abre el FAB)
-    MedicalPage(), // index 3
-    SettingPage(), // index 4
+    AnimalListPage(),
+    PredioPage(),
+    MedicalPage(),
+    SettingPage(),
   ];
-
   void onTapTapped(int index) {
     setState(() {
       indexTap = index;
@@ -31,62 +28,36 @@ class _HomePage extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: widgetsChildren[indexTap],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            indexTap = 2; // 👈 muestra AnimalAddPage dentro del body
-          });
-        },
-        backgroundColor: Colors.lightBlue,
-        child: Icon(
-          Icons.add,
-          size: 32,
-          color: indexTap == 2 ? Colors.white : Colors.blueGrey,
+      bottomNavigationBar: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(15), // 👈 borde redondeado arriba izquierda
+          topRight: Radius.circular(15), // 👈 borde redondeado arriba derecha
         ),
-        shape: const CircleBorder(),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 5,
-        color: Colors.lightBlue,
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          currentIndex: (indexTap == 2)
-              ? 0
-              : (indexTap > 2 ? indexTap - 1 : indexTap),
-
-          selectedItemColor: indexTap == 2 ? Colors.blueGrey : Colors.white,
-          unselectedItemColor:  Colors.blueGrey,
-          onTap: (index) {
-            print("POSITION ${index}");
-            if (index == 0) {
-              onTapTapped(0); // Listar
-            } else if (index == 1) {
-              onTapTapped(1); // Predio
-            } else if (index == 2) {
-              onTapTapped(3); // Médico
-            } else if (index == 3) {
-              onTapTapped(4); // Setting
-            }
-          },
+          backgroundColor: Colors.lightBlue,
+          elevation: 8,
+          onTap: onTapTapped,
+          currentIndex: indexTap,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.blueGrey,
+          // iconSize: 30, // 👈 íconos más grandes
+          selectedFontSize: 12, // 👈 texto seleccionado más grande
+          unselectedFontSize: 10, // 👈 texto normal más grande
+          selectedIconTheme: IconThemeData(size: 27),
           items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.pets), label: "Animal"),
+
             BottomNavigationBarItem(
-              icon: Icon(Icons.pets, size: 22),
-              label: "Animal",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.apartment, size: 22),
+              icon: Icon(Icons.apartment),
               label: "Predio",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.coronavirus, size: 22),
+              icon: Icon(Icons.coronavirus),
               label: "Enfermedad",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings, size: 22),
+              icon: Icon(Icons.settings),
               label: "Setting",
             ),
           ],

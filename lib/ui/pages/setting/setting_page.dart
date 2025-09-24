@@ -18,7 +18,15 @@ class _SettingPageState extends State<SettingPage> {
         ),
         backgroundColor: Colors.lightBlueAccent,
       ),
-      body: Container(child: Center(child: Text("Vista Setting"))),
+      body: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.settings, size: 60),
+            Center(child: Text("Vista Setting")),
+          ],
+        ),
+      ),
     );
   }
 }

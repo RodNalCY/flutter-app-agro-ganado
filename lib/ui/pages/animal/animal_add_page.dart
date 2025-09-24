@@ -37,6 +37,9 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.lightBlueAccent,
+        iconTheme: const IconThemeData(
+          color: Colors.white, // 👈 cambia el color del back arrow
+        ),
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
