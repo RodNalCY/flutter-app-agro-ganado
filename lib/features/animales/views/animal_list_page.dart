@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proinnovate_flutter_app/ui/pages/animal/animal_add_page.dart';
+import 'package:proinnovate_flutter_app/features/animales/views/animal_add_page.dart';
 
 class AnimalListPage extends StatefulWidget {
   const AnimalListPage({Key? key}) : super(key: key);

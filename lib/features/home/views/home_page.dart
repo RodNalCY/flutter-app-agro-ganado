@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:proinnovate_flutter_app/ui/pages/animal/animal_add_page.dart';
-import 'package:proinnovate_flutter_app/ui/pages/animal/animal_list_page.dart';
-import 'package:proinnovate_flutter_app/ui/pages/medical/medical_page.dart';
-import 'package:proinnovate_flutter_app/ui/pages/predio/predio_page.dart';
-import 'package:proinnovate_flutter_app/ui/pages/setting/setting_page.dart';
+import 'package:proinnovate_flutter_app/features/animales/views/animal_list_page.dart';
+import 'package:proinnovate_flutter_app/features/medicals/views/medical_page.dart';
+import 'package:proinnovate_flutter_app/features/predios/views/predio_page.dart';
+import 'package:proinnovate_flutter_app/features/settings/views/setting_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
