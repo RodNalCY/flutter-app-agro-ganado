@@ -37,6 +37,7 @@ dependencies:
   http: ^1.5.0
   dropdown_search: ^6.0.2
   provider: ^6.1.5+1
+  another_flushbar: ^1.12.32
 
   flutter_localizations:
     sdk: flutter

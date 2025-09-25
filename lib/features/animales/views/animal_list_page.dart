@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/animal_add_page.dart';
+// import 'package:proinnovate_flutter_app/features/core/widgets/flushbar_widget.dart';
+import 'package:proinnovate_flutter_app/features/core/widgets/navigator_widget.dart';
 import 'package:provider/provider.dart';
 import '../repositories/animal_repository.dart';
 import '../services/animal_api_service.dart';
@@ -48,35 +50,14 @@ class AnimalListPage extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (context, animation, secondaryAnimation) =>
-                    AnimalAddPage(),
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) {
-                      const begin = Offset(0.0, 1.0); // 👈 entra desde abajo
-                      const end = Offset.zero;
-                      const curve = Curves.ease;
-
-                      var tween = Tween(
-                        begin: begin,
-                        end: end,
-                      ).chain(CurveTween(curve: curve));
-                      var offsetAnimation = animation.drive(tween);
-
-                      return SlideTransition(
-                        position: offsetAnimation,
-                        child: FadeTransition(
-                          // 👈 combina fade + slide
-                          opacity: animation,
-                          child: child,
-                        ),
-                      );
-                    },
-              ),
-            );
+          onPressed: () async {
+            // FlushbarWidget.show(
+            //   context: context,
+            //   message: "Animal cargado correctamente",
+            //   icon: Icons.info_outline,
+            //   color: Colors.blue,
+            // );
+            NavigatorWidget.pushWithSlideUp(context, AnimalAddPage());
           },
           backgroundColor: Colors.lightBlue,
           child: const Icon(Icons.add, size: 32, color: Colors.white),
