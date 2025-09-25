@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:proinnovate_flutter_app/features/animales/viewmodels/tipo_ganado_view_model.dart';
+import 'package:provider/provider.dart';
+import 'package:proinnovate_flutter_app/features/animales/views/widgets/tipo_ganado_dropdown.dart';
 
 class AnimalAddPage extends StatefulWidget {
   const AnimalAddPage({Key? key}) : super(key: key);
@@ -26,6 +29,18 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
             "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
       });
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(
+      () =>
+          Provider.of<TipoGanadoViewModel>(context, listen: false).fetchTipos(),
+    );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<TipoGanadoViewModel>().fetchTipos();
+    });
   }
 
   @override
@@ -112,26 +127,10 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                           ],
                         ),
                         Container(
-                          child: DropdownSearch<String>(
-                            // key: dropDownKey,
-                            // selectedItem: "Menu",
-                            items: (filter, infiniteScrollProps) => [
-                              "Bovino",
-                              "Porcino",
-                              "Ovino",
-                            ],
-                            decoratorProps: DropDownDecoratorProps(
-                              decoration: InputDecoration(
-                                // labelText: 'Examples for: ',
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                              ),
-                            ),
-                            popupProps: PopupProps.menu(
-                              fit: FlexFit.loose,
-                              constraints: BoxConstraints(),
-                            ),
+                          child: TipoGanadoDropdown(
+                            onChanged: (tipo) {
+                              print("Seleccionado: ${tipo?.nombre}");
+                            },
                           ),
                         ),
                       ],

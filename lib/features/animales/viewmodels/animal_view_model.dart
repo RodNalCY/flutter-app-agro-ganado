@@ -4,6 +4,7 @@ import '../repositories/animal_repository.dart';
 
 class AnimalViewModel extends ChangeNotifier {
   final AnimalRepository repository;
+  bool _disposed = false;
 
   AnimalViewModel({required this.repository});
 
@@ -15,6 +16,18 @@ class AnimalViewModel extends ChangeNotifier {
   List<Animal> get animals => _filteredAnimals;
   bool get isLoading => _isLoading;
   String? get error => _error;
+  @override
+  void dispose() {
+    _disposed = true;
+    super.dispose();
+  }
+
+  @override
+  void notifyListeners() {
+    if (!_disposed) {
+      super.notifyListeners();
+    }
+  }
 
   Future<void> fetchAnimals() async {
     _isLoading = true;

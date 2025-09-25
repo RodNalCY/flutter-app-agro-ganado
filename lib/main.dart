@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:proinnovate_flutter_app/features/animales/viewmodels/tipo_ganado_view_model.dart';
+import 'package:proinnovate_flutter_app/features/animales/views/animal_add_page.dart';
 import 'package:proinnovate_flutter_app/features/home/views/home_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart'; // 👈 este es el bueno
+import 'package:provider/provider.dart';
 
+// void main() {
+//   runApp(const MyApp());
+// }
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => TipoGanadoViewModel())],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -42,9 +53,10 @@ class MyApp extends StatelessWidget {
         Locale('en', ''), // 👈 Inglés (opcional)
       ],
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      home: HomePage(),
+      // home: AnimalAddPage(),
       // home: AnimalListPage(),
       // home: AnimalAddPage(),
+      home: HomePage(),
     );
   }
 }
