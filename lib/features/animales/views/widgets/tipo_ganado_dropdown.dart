@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proinnovate_flutter_app/features/animales/models/tipo_ganado.dart';
+import 'package:proinnovate_flutter_app/features/animales/models/animal.dart';
 import 'package:proinnovate_flutter_app/features/animales/viewmodels/tipo_ganado_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:dropdown_search/dropdown_search.dart';

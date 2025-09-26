@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/destino.dart';
+import '../models/animal.dart';
 import '../repositories/destino_repository.dart';
 
 class DestinoViewModel extends ChangeNotifier {
@@ -13,7 +13,6 @@ class DestinoViewModel extends ChangeNotifier {
   List<Destino> get destinos => _destinos;
   bool get isLoading => _isLoading;
   String? get error => _error;
-
 
   Future<void> fetchDestinos() async {
     _isLoading = true;

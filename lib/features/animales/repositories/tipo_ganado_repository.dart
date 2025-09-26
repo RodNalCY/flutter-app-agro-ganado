@@ -1,4 +1,4 @@
-import '../models/tipo_ganado.dart';
+import '../models/animal.dart';
 import '../services/tipo_ganado_api_service.dart';
 
 class TipoGanadoRepository {

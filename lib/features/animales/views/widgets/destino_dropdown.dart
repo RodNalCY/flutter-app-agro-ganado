@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proinnovate_flutter_app/features/animales/models/destino.dart';
+import 'package:proinnovate_flutter_app/features/animales/models/animal.dart';
 import 'package:proinnovate_flutter_app/features/animales/viewmodels/destino_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:dropdown_search/dropdown_search.dart';

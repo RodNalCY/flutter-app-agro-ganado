@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../models/tipo_ganado.dart';
+import '../models/animal.dart';
 
 class TipoGanadoApiService {
   final String baseUrl = "https://proinnovate-api.pruebasgt.com/api";

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../repositories/tipo_ganado_repository.dart';
-import '../models/tipo_ganado.dart';
+import '../models/animal.dart';
 
 class TipoGanadoViewModel extends ChangeNotifier {
   final TipoGanadoRepository repository;
