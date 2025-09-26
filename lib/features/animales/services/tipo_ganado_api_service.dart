@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/tipo_ganado.dart';
 
-class TipoGanadoService {
+class TipoGanadoApiService {
   final String baseUrl = "https://proinnovate-api.pruebasgt.com/api";
 
   Future<List<TipoGanado>> fetchTiposGanado() async {

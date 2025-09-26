@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:proinnovate_flutter_app/features/animales/repositories/destino_repository.dart';
+import 'package:proinnovate_flutter_app/features/animales/repositories/tipo_ganado_repository.dart';
+import 'package:proinnovate_flutter_app/features/animales/services/destino_api_service.dart';
+import 'package:proinnovate_flutter_app/features/animales/services/tipo_ganado_api_service.dart';
+import 'package:proinnovate_flutter_app/features/animales/viewmodels/destino_view_model.dart';
 import 'package:proinnovate_flutter_app/features/animales/viewmodels/tipo_ganado_view_model.dart';
-import 'package:proinnovate_flutter_app/features/animales/views/animal_add_page.dart';
 import 'package:proinnovate_flutter_app/features/home/views/home_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart'; // 👈 este es el bueno
 import 'package:provider/provider.dart';
@@ -11,7 +15,20 @@ import 'package:provider/provider.dart';
 void main() {
   runApp(
     MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => TipoGanadoViewModel())],
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => TipoGanadoViewModel(
+            repository: TipoGanadoRepository(
+              apiService: TipoGanadoApiService(),
+            ),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => DestinoViewModel(
+            repository: DestinoRepository(apiService: DestinoApiService()),
+          ),
+        ),
+      ],
       child: MyApp(),
     ),
   );

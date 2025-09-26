@@ -14,8 +14,8 @@ class _HomePage extends State<HomePage> {
   int indexTap = 0;
   final List<Widget> widgetsChildren = [
     AnimalListPage(),
-    // PredioPage(),
-    AnimalAddPage(),
+    PredioPage(),
+    // AnimalAddPage(),
     MedicalPage(),
     SettingPage(),
   ];

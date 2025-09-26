@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:proinnovate_flutter_app/features/animales/viewmodels/destino_view_model.dart';
 import 'package:proinnovate_flutter_app/features/animales/viewmodels/tipo_ganado_view_model.dart';
+import 'package:proinnovate_flutter_app/features/animales/views/widgets/destino_dropdown.dart';
 import 'package:provider/provider.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/widgets/tipo_ganado_dropdown.dart';
 
@@ -38,8 +40,15 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
       () =>
           Provider.of<TipoGanadoViewModel>(context, listen: false).fetchTipos(),
     );
+
+    Future.microtask(
+      () =>
+          Provider.of<DestinoViewModel>(context, listen: false).fetchDestinos(),
+    );
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<TipoGanadoViewModel>().fetchTipos();
+      context.read<DestinoViewModel>().fetchDestinos();
     });
   }
 
@@ -195,30 +204,9 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                           ],
                         ),
                         Container(
-                          child: DropdownSearch<String>.multiSelection(
-                            items: (filter, infiniteScrollProps) => [
-                              "Carne",
-                              "Leche",
-                              "Reproducción",
-                              "Lana",
-                            ],
-                            popupProps: PopupPropsMultiSelection.menu(
-                              // showSearchBox: true,
-                              fit: FlexFit.loose,
-                              searchFieldProps: TextFieldProps(
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(20),
-                                    ),
-                                  ),
-                                  labelText: "Buscar",
-                                  prefixIcon: Icon(Icons.search),
-                                ),
-                              ),
-                            ),
-                            onChanged: (values) {
-                              print("Seleccionados: $values");
+                          child: DestinoDropdown(
+                            onChanged: (destino) {
+                              print("Seleccionado: ${destino?.nombre}");
                             },
                           ),
                         ),
