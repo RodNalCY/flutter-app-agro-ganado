@@ -18,7 +18,7 @@ class _PredioHomePageState extends State<PredioHomePage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            "Añadir de Predio",
+            "Home Predio",
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
           backgroundColor: Colors.lightBlueAccent,
@@ -30,7 +30,7 @@ class _PredioHomePageState extends State<PredioHomePage> {
             labelColor: Colors.white,
             unselectedLabelColor: Colors.white,
             tabs: [
-              Tab(icon: Icon(Icons.add_home_work), text: 'General'),
+              Tab(icon: Icon(Icons.assignment), text: 'General'),
               Tab(icon: Icon(Icons.pets), text: 'Animales'),
               Tab(icon: Icon(Icons.person), text: 'Propietarios'),
             ],

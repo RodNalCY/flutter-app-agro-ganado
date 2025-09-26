@@ -55,16 +55,6 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Añadir de Animal",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Colors.lightBlueAccent,
-        iconTheme: const IconThemeData(
-          color: Colors.white, // 👈 cambia el color del back arrow
-        ),
-      ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(

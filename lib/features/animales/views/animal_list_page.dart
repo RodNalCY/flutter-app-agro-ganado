@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proinnovate_flutter_app/features/animales/views/animal_add_page.dart';
+import 'package:proinnovate_flutter_app/features/animales/views/animal_home_page.dart';
 // import 'package:proinnovate_flutter_app/features/core/widgets/flushbar_widget.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/navigator_widget.dart';
 import 'package:provider/provider.dart';
@@ -19,10 +19,7 @@ class AnimalListPage extends StatelessWidget {
       )..fetchAnimals(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(
-            "Lista de Animales",
-            style: TextStyle(color: Colors.white),
-          ),
+          title: const Text("Animales", style: TextStyle(color: Colors.white)),
           backgroundColor: Colors.lightBlueAccent,
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(60),
@@ -57,7 +54,7 @@ class AnimalListPage extends StatelessWidget {
             //   icon: Icons.info_outline,
             //   color: Colors.blue,
             // );
-            NavigatorWidget.pushWithSlideUp(context, AnimalAddPage());
+            NavigatorWidget.pushWithSlideUp(context, AnimalHomePage());
           },
           backgroundColor: Colors.lightBlue,
           child: const Icon(Icons.add, size: 32, color: Colors.white),
