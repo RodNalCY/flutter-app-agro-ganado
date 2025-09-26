@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proinnovate_flutter_app/features/core/widgets/navigator_widget.dart';
 import 'predio_home_page.dart';
 
 class PredioListPage extends StatefulWidget {
@@ -34,34 +35,7 @@ class _PredioListPageState extends State<PredioListPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(
-            context,
-            PageRouteBuilder(
-              pageBuilder: (context, animation, secondaryAnimation) =>
-                  PredioHomePage(),
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) {
-                    const begin = Offset(0.0, 1.0); // 👈 entra desde abajo
-                    const end = Offset.zero;
-                    const curve = Curves.ease;
-
-                    var tween = Tween(
-                      begin: begin,
-                      end: end,
-                    ).chain(CurveTween(curve: curve));
-                    var offsetAnimation = animation.drive(tween);
-
-                    return SlideTransition(
-                      position: offsetAnimation,
-                      child: FadeTransition(
-                        // 👈 combina fade + slide
-                        opacity: animation,
-                        child: child,
-                      ),
-                    );
-                  },
-            ),
-          );
+          NavigatorWidget.pushWithSlideUp(context, PredioHomePage());
         },
         backgroundColor: Colors.lightBlue,
         child: Icon(Icons.add, size: 32, color: Colors.white),

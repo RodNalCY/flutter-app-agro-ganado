@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/animal_add_page.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/animal_calendario_page.dart';
-import 'package:proinnovate_flutter_app/features/animales/views/animal_familiar_pages.dart';
+import 'package:proinnovate_flutter_app/features/animales/views/animal_familiar_list_page.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/animal_historial_page.dart';
 
 class AnimalHomePage extends StatefulWidget {
@@ -38,8 +38,8 @@ class _AnimalHomePageState extends State<AnimalHomePage> {
         // body: Center(child: Text("Agregar Predio")),
         body: TabBarView(
           children: [
-            AnimalAddPage(),
-            AnimalFamiliarPage(),
+            AnimalAddPage(statusHeader: false),
+            AnimalFamiliarListPage(),
             AnimalHistorialPage(),
             AnimalCalendarioPage(),
           ],

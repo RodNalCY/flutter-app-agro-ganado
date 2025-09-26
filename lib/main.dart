@@ -69,10 +69,7 @@ class MyApp extends StatelessWidget {
         Locale('es', ''), // 👈 Español
         Locale('en', ''), // 👈 Inglés (opcional)
       ],
-      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      // home: AnimalAddPage(),
-      // home: AnimalListPage(),
-      // home: AnimalAddPage(),
+
       home: HomePage(),
     );
   }

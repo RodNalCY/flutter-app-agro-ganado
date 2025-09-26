@@ -7,7 +7,8 @@ import 'package:provider/provider.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/widgets/tipo_ganado_dropdown.dart';
 
 class AnimalAddPage extends StatefulWidget {
-  const AnimalAddPage({Key? key}) : super(key: key);
+  final bool statusHeader;
+  const AnimalAddPage({Key? key, required this.statusHeader}) : super(key: key);
 
   @override
   _AnimalAddPageState createState() => _AnimalAddPageState();
@@ -55,6 +56,16 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: widget.statusHeader
+          ? AppBar(
+              title: const Text(
+                "Agregar Animal",
+                style: TextStyle(color: Colors.white),
+              ),
+              backgroundColor: Colors.lightBlueAccent,
+              iconTheme: IconThemeData(color: Colors.white),
+            )
+          : null,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(
