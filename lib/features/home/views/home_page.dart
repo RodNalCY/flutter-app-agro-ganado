@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/animal_list_page.dart';
-import 'package:proinnovate_flutter_app/features/medicals/views/medical_page.dart';
+// import 'package:proinnovate_flutter_app/features/medicals/views/medical_page.dart';
 import 'package:proinnovate_flutter_app/features/predios/views/predio_list_page.dart';
 import 'package:proinnovate_flutter_app/features/settings/views/setting_page.dart';
 
@@ -15,7 +15,7 @@ class _HomePage extends State<HomePage> {
     AnimalListPage(),
     PredioListPage(),
     // AnimalAddPage(),
-    MedicalPage(),
+    // MedicalPage(),
     SettingPage(),
   ];
   void onTapTapped(int index) {
@@ -52,10 +52,10 @@ class _HomePage extends State<HomePage> {
               icon: Icon(Icons.apartment),
               label: "Predio",
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.coronavirus),
-              label: "Enfermedad",
-            ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.coronavirus),
+            //   label: "Enfermedad",
+            // ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings),
               label: "Setting",
