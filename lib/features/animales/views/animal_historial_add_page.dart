@@ -38,31 +38,53 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
     "Vacunación",
     "Producción",
   ];
-  Widget? selectedWidgetTipo;
+  // Widget? selectedWidgetTipo;
 
+  // void onItemSelectedTipo(int index, BuildContext context) {
+  //   Widget selected;
+
+  //   switch (index) {
+  //     case 0:
+  //       selected = buildCheckboxEnfermedad();
+  //       break;
+  //     case 1:
+  //       selected = buildSelectPredio(context);
+  //       break;
+  //     case 2:
+  //       selected = buildInputTipoVacuna();
+  //       break;
+  //     case 3:
+  //       selected = buildSelectDestino(context);
+  //       break;
+  //     default:
+  //       selected = Container(); // opcional por seguridad
+  //   }
+
+  //   setState(() {
+  //     selectedWidgetTipo = selected;
+  //   });
+  // }
+
+  int? selectedTipoIndex;
   void onItemSelectedTipo(int index, BuildContext context) {
-    Widget selected;
-
-    switch (index) {
-      case 0:
-        selected = buildCheckboxEnfermedad();
-        break;
-      case 1:
-        selected = buildSelectPredio(context);
-        break;
-      case 2:
-        selected = buildInputTipoVacuna();
-        break;
-      case 3:
-        selected = buildSelectDestino(context);
-        break;
-      default:
-        selected = Container(); // opcional por seguridad
-    }
-
     setState(() {
-      selectedWidgetTipo = selected;
+      selectedTipoIndex = index;
     });
+  }
+
+  Widget buildSelectedTipo(BuildContext context) {
+    switch (selectedTipoIndex) {
+      case 0:
+        return buildCheckboxEnfermedad();
+      case 1:
+        return buildSelectPredio(context);
+      case 2:
+        return buildInputTipoVacuna();
+      case 3:
+        return buildSelectDestino(context);
+      default:
+        return Container(); // valor por defecto
+    }
   }
 
   @override
@@ -201,8 +223,14 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
                 ),
               ),
               SizedBox(height: 10),
+              // Column(
+              //   children: [
+              //     if (selectedWidgetTipo != null) selectedWidgetTipo!,
+              //     buildCheckboxEnfermedad(),
+              //   ],
+              // ),
               // Aquí se muestra el widget seleccionado
-              if (selectedWidgetTipo != null) selectedWidgetTipo!,
+              // if (selectedWidgetTipo != null) selectedWidgetTipo!,
               // SizedBox(height: 10),
               // buildCheckboxEnfermedad(),
               // SizedBox(height: 10),
@@ -210,6 +238,7 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
               // SizedBox(height: 10),
               // buildSelectDestino(context),
               // buildInputTipoVacuna(),
+              buildSelectedTipo(context),
               SizedBox(height: 10),
               Container(
                 width: MediaQuery.of(context).size.width,

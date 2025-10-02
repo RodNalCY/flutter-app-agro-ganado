@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'predio_add_page.dart';
 import 'predio_animal_list_page.dart';
-import 'predio_propietario_page.dart';
+import 'predio_propietario_list_page.dart';
 
 class PredioHomePage extends StatefulWidget {
   const PredioHomePage({Key? key}) : super(key: key);
@@ -41,7 +41,7 @@ class _PredioHomePageState extends State<PredioHomePage> {
           children: [
             PredioAddPage(),
             PredioAnimalListPage(),
-            PredioPropietarioPage(),
+            PredioPropietarioListPage(),
           ],
         ),
       ),
