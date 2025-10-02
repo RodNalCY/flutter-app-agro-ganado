@@ -17,7 +17,7 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
       initialDate: DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2026),
-      locale: const Locale("es", "ES"), // 👈 Forzar español
+      locale: const Locale("es", "ES"), // Forzar español
     );
 
     if (pickedDate != null) {

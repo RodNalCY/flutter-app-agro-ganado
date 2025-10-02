@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/animal_add_page.dart';
-import 'package:proinnovate_flutter_app/features/animales/views/animal_calendario_page.dart';
+// import 'package:proinnovate_flutter_app/features/animales/views/animal_calendario_list_page.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/animal_familiar_list_page.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/animal_historial_list_page.dart';
 
@@ -15,7 +15,7 @@ class _AnimalHomePageState extends State<AnimalHomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           title: Text("Home Animal", style: TextStyle(color: Colors.white)),
@@ -29,9 +29,9 @@ class _AnimalHomePageState extends State<AnimalHomePage> {
             unselectedLabelColor: Colors.white,
             tabs: [
               Tab(icon: Icon(Icons.assignment), text: 'General'),
-              Tab(icon: Icon(Icons.pets), text: 'Familiar'),
+              Tab(icon: Icon(Icons.pets), text: 'Familiares'),
               Tab(icon: Icon(Icons.bar_chart_rounded), text: 'Historial'),
-              Tab(icon: Icon(Icons.calendar_month_rounded), text: 'Calendario'),
+              // Tab(icon: Icon(Icons.calendar_month_rounded), text: 'Calendario'),
             ],
           ),
         ),
@@ -41,7 +41,7 @@ class _AnimalHomePageState extends State<AnimalHomePage> {
             AnimalAddPage(statusHeader: false),
             AnimalFamiliarListPage(),
             AnimalHistorialListPage(),
-            AnimalCalendarioPage(),
+            // AnimalCalendarioListPage(),
           ],
         ),
       ),

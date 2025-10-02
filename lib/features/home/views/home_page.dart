@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:proinnovate_flutter_app/features/animales/views/animal_add_page.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/animal_list_page.dart';
 import 'package:proinnovate_flutter_app/features/medicals/views/medical_page.dart';
 import 'package:proinnovate_flutter_app/features/predios/views/predio_list_page.dart';
