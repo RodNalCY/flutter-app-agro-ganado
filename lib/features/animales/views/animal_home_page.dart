@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/animal_add_page.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/animal_calendario_page.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/animal_familiar_list_page.dart';
-import 'package:proinnovate_flutter_app/features/animales/views/animal_historial_page.dart';
+import 'package:proinnovate_flutter_app/features/animales/views/animal_historial_list_page.dart';
 
 class AnimalHomePage extends StatefulWidget {
   const AnimalHomePage({Key? key}) : super(key: key);
@@ -40,7 +40,7 @@ class _AnimalHomePageState extends State<AnimalHomePage> {
           children: [
             AnimalAddPage(statusHeader: false),
             AnimalFamiliarListPage(),
-            AnimalHistorialPage(),
+            AnimalHistorialListPage(),
             AnimalCalendarioPage(),
           ],
         ),

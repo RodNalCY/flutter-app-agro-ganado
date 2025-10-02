@@ -45,6 +45,8 @@ class TipoGanadoDropdown extends StatelessWidget {
           },
           decoratorProps: DropDownDecoratorProps(
             decoration: InputDecoration(
+              isDense: true,
+              hintText: "Seleccione",
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15),
               ),

@@ -44,6 +44,8 @@ class DestinoDropdown extends StatelessWidget {
           },
           decoratorProps: DropDownDecoratorProps(
             decoration: InputDecoration(
+              hintText: "Seleccione",
+              isDense: true,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15),
               ),

@@ -91,6 +91,7 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                           child: TextFormField(
                             decoration: InputDecoration(
                               isDense: true,
+                              hintText: "Ingrese el Código",
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15),
                               ),
@@ -169,7 +170,8 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                             ],
                             decoratorProps: DropDownDecoratorProps(
                               decoration: InputDecoration(
-                                // labelText: 'Examples for: ',
+                                hintText: "Seleccione",
+                                isDense: true,
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15),
                                 ),
@@ -246,6 +248,7 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                             readOnly: true,
                             decoration: InputDecoration(
                               isDense: true,
+                              hintText: "--/--/----",
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15),
                               ),
@@ -283,6 +286,8 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                             decoratorProps: DropDownDecoratorProps(
                               decoration: InputDecoration(
                                 // labelText: 'Examples for: ',
+                                hintText: "Seleccione",
+                                isDense: true,
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15),
                                 ),

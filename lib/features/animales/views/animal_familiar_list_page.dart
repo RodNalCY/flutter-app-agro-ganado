@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:proinnovate_flutter_app/features/animales/views/animal_familiar_add_page.dart';
+import 'package:proinnovate_flutter_app/features/core/widgets/navigator_widget.dart';
 
 class AnimalFamiliarListPage extends StatefulWidget {
   const AnimalFamiliarListPage({Key? key}) : super(key: key);
@@ -39,6 +41,14 @@ class _AnimalFamiliarListPageState extends State<AnimalFamiliarListPage> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          NavigatorWidget.pushWithSlideUp(context, AnimalFamiliarAddPage());
+        },
+        backgroundColor: Colors.lightBlue,
+        child: const Icon(Icons.add, size: 32, color: Colors.white),
+        shape: const CircleBorder(),
+      ),
     );
   }
 
@@ -49,12 +59,12 @@ class _AnimalFamiliarListPageState extends State<AnimalFamiliarListPage> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
-            height: 100,
-            width: 100,
+            height: 80,
+            width: 80,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
-                "https://imagenes.eleconomista.com.mx/files/image_768_768/uploads/2023/03/06/66e45e0535ec3.jpeg",
+                "https://www.clubganadero.com/wp-content/uploads/sites/78/2024/09/image_284597.jpeg",
                 fit: BoxFit.cover,
               ),
             ),
@@ -66,11 +76,11 @@ class _AnimalFamiliarListPageState extends State<AnimalFamiliarListPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    "CENTRO GANADERO S.A. $index",
+                    "BOV1234567 (Padre) $index",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                   ),
                   Text(
-                    "PRE1234567 $index",
+                    "Bovino hembra para reproducción $index",
                     style: TextStyle(fontWeight: FontWeight.w300),
                   ),
                 ],
