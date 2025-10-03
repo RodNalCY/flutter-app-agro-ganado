@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:table_calendar/table_calendar.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/flushbar_widget.dart';
-import 'package:proinnovate_flutter_app/features/core/widgets/navigator_widget.dart';
-import 'predio_home_page.dart';
 
-class PredioListPage extends StatefulWidget {
-  const PredioListPage({Key? key}) : super(key: key);
+class CalendarListPage extends StatefulWidget {
+  const CalendarListPage({Key? key}) : super(key: key);
 
   @override
-  _PredioListPageState createState() => _PredioListPageState();
+  _CalendarListPageState createState() => _CalendarListPageState();
 }
 
-class _PredioListPageState extends State<PredioListPage> {
+class _CalendarListPageState extends State<CalendarListPage> {
+  DateTime focusedDay = DateTime.now();
+  DateTime? selectedDay;
+  CalendarFormat calendarFormat = CalendarFormat.month; // formato por defecto
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Predios",
+          "Calendario",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.lightBlueAccent,
@@ -26,21 +29,60 @@ class _PredioListPageState extends State<PredioListPage> {
         child: Container(
           child: Column(
             children: <Widget>[
-              buildCardList(context),
-              buildCardList(context),
-              buildCardList(context),
+              Card(
+                elevation: 4,
+                child: TableCalendar(
+                  firstDay: DateTime.utc(2000, 1, 1),
+                  lastDay: DateTime.utc(2026, 12, 31),
+                  focusedDay: focusedDay,
+                  locale: 'es_ES', // 👈 idioma español
+                  selectedDayPredicate: (day) => isSameDay(selectedDay, day),
+                  // headerStyle: const HeaderStyle(
+                  //   formatButtonVisible: false, // 👈 oculta el botón "2 weeks"
+                  // ),
+                  // 👇 Aquí personalizamos colores
+                  calendarStyle: CalendarStyle(
+                    todayDecoration: BoxDecoration(
+                      color: Colors.black, // color del día de hoy
+                      shape: BoxShape.circle,
+                    ),
+                    selectedDecoration: BoxDecoration(
+                      color: Colors.lightBlue, // color del día seleccionado
+                      shape: BoxShape.circle,
+                    ),
+                    selectedTextStyle: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    todayTextStyle: const TextStyle(color: Colors.white),
+                  ),
+                  onDaySelected: (selected, focused) {
+                    setState(() {
+                      selectedDay = selected;
+                      focusedDay = focused;
+                    }); // 👉 Mostrar alerta
+                    FlushbarWidget.show(
+                      context: context,
+                      message:
+                          "${selected.day}/${selected.month}/${selected.year}",
+                      icon: Icons.calendar_month,
+                      color: Colors.blue,
+                    );
+                  },
+                  // 👇 ESTA ES LA PARTE QUE TE FALTABA
+                  calendarFormat: calendarFormat,
+                  onFormatChanged: (format) {
+                    setState(() {
+                      calendarFormat = format;
+                    });
+                  },
+                ),
+              ),
+
               buildCardList(context),
             ],
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          NavigatorWidget.pushWithSlideUp(context, PredioHomePage());
-        },
-        backgroundColor: Colors.lightBlue,
-        child: Icon(Icons.add, size: 32, color: Colors.white),
-        shape: const CircleBorder(),
       ),
     );
   }
@@ -51,55 +93,41 @@ class _PredioListPageState extends State<PredioListPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Container(
-            height: 200,
-            width: 140,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.network(
-                "https://imagenes.eleconomista.com.mx/files/image_768_768/uploads/2023/03/06/66e45e0535ec3.jpeg",
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
           Expanded(
             child: Padding(
               padding: EdgeInsets.all(8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                    "CENTRO GANADERO S.A.",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-                  ),
-                  Text(
-                    "PRE1234567",
-                    style: TextStyle(fontWeight: FontWeight.w300),
-                  ),
-                  Divider(color: Colors.grey),
-                  // ROW REGISTRO HAPPY
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: <Widget>[
-                      Icon(Icons.pets, size: 28),
-                      Text("1240 animales", style: TextStyle(fontSize: 16)),
-                    ],
-                  ),
-                  // ROW ENFERMEDAD
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Icon(Icons.location_on, size: 30),
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(4.0),
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.all(Radius.circular(7)),
+                        ),
+                        child: Icon(
+                          Icons.vaccines,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                      ),
+                      SizedBox(width: 10.0),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "CALLE DE LAS PRUEBAS...",
-                            style: TextStyle(fontSize: 16),
+                            "Consulta médica",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
                           ),
                           Text(
-                            "Arequipa, Arequipa, Arequipa",
+                            "2 enfermedades detectadas",
                             style: TextStyle(fontWeight: FontWeight.w300),
                           ),
                         ],
@@ -166,26 +194,6 @@ class _PredioListPageState extends State<PredioListPage> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  void snackbarEliminar() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text("Registro Eliminado !!!"),
-        duration: Duration(seconds: 2), // cuánto tiempo se muestra
-        behavior: SnackBarBehavior.floating, // flotante o fijo abajo
-      ),
-    );
-  }
-
-  void snackbarEditar() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text("Registro Editado !!!"),
-        duration: Duration(seconds: 2), // cuánto tiempo se muestra
-        behavior: SnackBarBehavior.floating, // flotante o fijo abajo
       ),
     );
   }

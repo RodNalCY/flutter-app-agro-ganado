@@ -16,8 +16,7 @@ class AnimalHistorialListPage extends StatefulWidget {
 class _AnimalHistorialListPageState extends State<AnimalHistorialListPage> {
   DateTime focusedDay = DateTime.now();
   DateTime? selectedDay;
-  CalendarFormat calendarFormat =
-      CalendarFormat.month; // 👈 formato por defecto
+  CalendarFormat calendarFormat = CalendarFormat.month; // formato por defecto
 
   @override
   Widget build(BuildContext context) {

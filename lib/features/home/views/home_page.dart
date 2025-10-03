@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/animal_list_page.dart';
 // import 'package:proinnovate_flutter_app/features/medicals/views/medical_page.dart';
 import 'package:proinnovate_flutter_app/features/predios/views/predio_list_page.dart';
-import 'package:proinnovate_flutter_app/features/settings/views/setting_page.dart';
+// import 'package:proinnovate_flutter_app/features/settings/views/setting_page.dart';
+import 'package:proinnovate_flutter_app/features/calendar/views/calendar_list_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -14,9 +15,10 @@ class _HomePage extends State<HomePage> {
   final List<Widget> widgetsChildren = [
     AnimalListPage(),
     PredioListPage(),
+    CalendarListPage(),
     // AnimalAddPage(),
     // MedicalPage(),
-    SettingPage(),
+    // SettingPage(),
   ];
   void onTapTapped(int index) {
     setState(() {
@@ -57,8 +59,8 @@ class _HomePage extends State<HomePage> {
             //   label: "Enfermedad",
             // ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: "Setting",
+              icon: Icon(Icons.calendar_month),
+              label: "Calendario",
             ),
           ],
         ),
