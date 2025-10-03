@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:proinnovate_flutter_app/features/core/widgets/flushbar_widget.dart';
 
 class PredioPropietarioAddPage extends StatefulWidget {
   const PredioPropietarioAddPage({Key? key}) : super(key: key);
@@ -261,21 +262,53 @@ class _PredioPropietarioAddPageState extends State<PredioPropietarioAddPage> {
                         Container(
                           child: DropdownSearch<String>(
                             items: (filter, infiniteScrollProps) => [
-                              "Propietario",
-                              "Familiar",
+                              "Administrador de finca",
+                              "Cuidador de ganado",
+                              "Alimentador",
+                              "Encargado de reproducción",
+                              "Encargado de sanidad animal",
+                              "Controlador de pastoreo",
+                              "Encargado de ordeño",
+                              "Supervisor de personal",
+                              "Encargado de registros",
+                              "Comercializador de productos",
+                              "Encargado de logística",
+                              "Gestor de compras de insumos",
+                              "Encargado de mantenimiento",
+                              "Encargado de bienestar animal",
                             ],
+                            dropdownBuilder: (context, selectedItem) {
+                              return Text(
+                                selectedItem ?? "Seleccione",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              );
+                            },
                             decoratorProps: DropDownDecoratorProps(
                               decoration: InputDecoration(
                                 isDense: true,
-                                hintText: "Seleccione",
+                                // hintText: "Seleccione",
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15),
                                 ),
                               ),
                             ),
-                            popupProps: PopupProps.menu(
+                            popupProps: PopupProps.bottomSheet(
                               fit: FlexFit.loose,
-                              constraints: BoxConstraints(),
+                              constraints: BoxConstraints(
+                                maxHeight:
+                                    MediaQuery.of(context).size.height *
+                                    0.5, // máximo la mitad de la pantalla
+                              ),
+                              showSearchBox: true,
+                              searchFieldProps: TextFieldProps(
+                                decoration: InputDecoration(
+                                  hintText: "Buscar...",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -330,11 +363,31 @@ class _PredioPropietarioAddPageState extends State<PredioPropietarioAddPage> {
                         Container(
                           child: DropdownSearch<String>(
                             items: (filter, infiniteScrollProps) => [
-                              "Lima",
-                              "Huanuco",
-                              "Pasco",
+                              "Amazonas",
+                              "Áncash",
+                              "Apurímac",
                               "Arequipa",
+                              "Ayacucho",
+                              "Cajamarca",
+                              "Callao",
+                              "Cusco",
+                              "Huancavelica",
+                              "Huánuco",
+                              "Ica",
+                              "Junín",
+                              "La Libertad",
+                              "Lambayeque",
+                              "Lima",
+                              "Loreto",
+                              "Madre de Dios",
+                              "Moquegua",
+                              "Pasco",
+                              "Piura",
+                              "Puno",
+                              "San Martín",
+                              "Tacna",
                               "Tumbes",
+                              "Ucayali",
                             ],
                             decoratorProps: DropDownDecoratorProps(
                               decoration: InputDecoration(
@@ -345,9 +398,22 @@ class _PredioPropietarioAddPageState extends State<PredioPropietarioAddPage> {
                                 ),
                               ),
                             ),
-                            popupProps: PopupProps.menu(
+                            popupProps: PopupProps.bottomSheet(
                               fit: FlexFit.loose,
-                              constraints: BoxConstraints(),
+                              constraints: BoxConstraints(
+                                maxHeight:
+                                    MediaQuery.of(context).size.height *
+                                    0.5, // máximo la mitad de la pantalla
+                              ),
+                              showSearchBox: true,
+                              searchFieldProps: TextFieldProps(
+                                decoration: InputDecoration(
+                                  hintText: "Buscar...",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -371,10 +437,15 @@ class _PredioPropietarioAddPageState extends State<PredioPropietarioAddPage> {
                           child: DropdownSearch<String>(
                             items: (filter, infiniteScrollProps) => [
                               "Lima",
-                              "Huanuco",
-                              "Pasco",
-                              "Arequipa",
-                              "Tumbes",
+                              "Barranca",
+                              "Cajatambo",
+                              "Canta",
+                              "Cañete",
+                              "Huaral",
+                              "Huarochirí",
+                              "Huaura",
+                              "Oyón",
+                              "Yauyos",
                             ],
                             decoratorProps: DropDownDecoratorProps(
                               decoration: InputDecoration(
@@ -385,9 +456,22 @@ class _PredioPropietarioAddPageState extends State<PredioPropietarioAddPage> {
                                 ),
                               ),
                             ),
-                            popupProps: PopupProps.menu(
+                            popupProps: PopupProps.bottomSheet(
                               fit: FlexFit.loose,
-                              constraints: BoxConstraints(),
+                              constraints: BoxConstraints(
+                                maxHeight:
+                                    MediaQuery.of(context).size.height *
+                                    0.5, // máximo la mitad de la pantalla
+                              ),
+                              showSearchBox: true,
+                              searchFieldProps: TextFieldProps(
+                                decoration: InputDecoration(
+                                  hintText: "Buscar...",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -415,11 +499,48 @@ class _PredioPropietarioAddPageState extends State<PredioPropietarioAddPage> {
                         Container(
                           child: DropdownSearch<String>(
                             items: (filter, infiniteScrollProps) => [
-                              "Lima",
-                              "Huanuco",
-                              "Pasco",
-                              "Arequipa",
-                              "Tumbes",
+                              "Ancón",
+                              "Ate",
+                              "Barranco",
+                              "Breña",
+                              "Carabayllo",
+                              "Chaclacayo",
+                              "Chorrillos",
+                              "Cieneguilla",
+                              "Comas",
+                              "El Agustino",
+                              "Independencia",
+                              "Jesús María",
+                              "La Molina",
+                              "La Victoria",
+                              "Lince",
+                              "Los Olivos",
+                              "Lurigancho",
+                              "Lurín",
+                              "Magdalena del Mar",
+                              "Miraflores",
+                              "Pachacámac",
+                              "Pucusana",
+                              "Pueblo Libre",
+                              "Puente Piedra",
+                              "Punta Hermosa",
+                              "Punta Negra",
+                              "Rímac",
+                              "San Bartolo",
+                              "San Borja",
+                              "San Isidro",
+                              "San Juan de Lurigancho",
+                              "San Juan de Miraflores",
+                              "San Luis",
+                              "San Martín de Porres",
+                              "San Miguel",
+                              "Santa Anita",
+                              "Santa María del Mar",
+                              "Santa Rosa",
+                              "Santiago de Surco",
+                              "Surquillo",
+                              "Villa El Salvador",
+                              "Villa María del Triunfo",
                             ],
                             decoratorProps: DropDownDecoratorProps(
                               decoration: InputDecoration(
@@ -430,9 +551,22 @@ class _PredioPropietarioAddPageState extends State<PredioPropietarioAddPage> {
                                 ),
                               ),
                             ),
-                            popupProps: PopupProps.menu(
+                            popupProps: PopupProps.bottomSheet(
                               fit: FlexFit.loose,
-                              constraints: BoxConstraints(),
+                              constraints: BoxConstraints(
+                                maxHeight:
+                                    MediaQuery.of(context).size.height *
+                                    0.5, // máximo la mitad de la pantalla
+                              ),
+                              showSearchBox: true,
+                              searchFieldProps: TextFieldProps(
+                                decoration: InputDecoration(
+                                  hintText: "Buscar...",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -507,6 +641,7 @@ class _PredioPropietarioAddPageState extends State<PredioPropietarioAddPage> {
                         ),
                         Container(
                           child: TextFormField(
+                            readOnly: true,
                             decoration: InputDecoration(
                               isDense: true,
                               hintText: "Ingrese latitud",
@@ -534,6 +669,7 @@ class _PredioPropietarioAddPageState extends State<PredioPropietarioAddPage> {
                         ),
                         Container(
                           child: TextFormField(
+                            readOnly: true,
                             decoration: InputDecoration(
                               isDense: true,
                               hintText: "Ingrese longitud",
@@ -574,7 +710,14 @@ class _PredioPropietarioAddPageState extends State<PredioPropietarioAddPage> {
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.blue,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    FlushbarWidget.show(
+                      context: context,
+                      message: "Propietario guardado con éxito",
+                      icon: Icons.save,
+                      color: Colors.blue,
+                    );
+                  },
                   icon: const Icon(Icons.add, size: 25),
                   label: Container(
                     padding: EdgeInsets.only(right: 10),

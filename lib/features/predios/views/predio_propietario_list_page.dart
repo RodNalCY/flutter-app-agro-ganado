@@ -37,9 +37,9 @@ class _PredioPropietarioListPageState extends State<PredioPropietarioListPage> {
                 ),
               ),
               SizedBox(height: 10),
-              buildInfoProductor(),
-              buildInfoProductor(),
-              buildInfoProductor(),
+              buildInfoProductor(context),
+              buildInfoProductor(context),
+              buildInfoProductor(context),
               SizedBox(height: 10),
             ],
           ),
@@ -56,7 +56,7 @@ class _PredioPropietarioListPageState extends State<PredioPropietarioListPage> {
     );
   }
 
-  Card buildInfoProductor() {
+  Card buildInfoProductor(BuildContext context) {
     return Card(
       elevation: 5,
       child: Padding(
@@ -71,16 +71,18 @@ class _PredioPropietarioListPageState extends State<PredioPropietarioListPage> {
                   Row(
                     children: [
                       Icon(Icons.account_circle, size: 40),
+                      SizedBox(width: 10),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "PREDIOS GANADEROS PRUEBAS",
+                            "CONTENT MEDIA S.A.C",
                             style: TextStyle(fontWeight: FontWeight.bold),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
                           Text(
-                            "Bovino hembra para reproducción",
+                            "RUC 20123456789",
                             style: TextStyle(fontWeight: FontWeight.w300),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,

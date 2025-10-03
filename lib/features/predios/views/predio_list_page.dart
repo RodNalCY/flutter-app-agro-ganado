@@ -52,8 +52,8 @@ class _PredioListPageState extends State<PredioListPage> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
-            height: 200,
-            width: 140,
+            height: 190,
+            width: 130,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
@@ -95,12 +95,8 @@ class _PredioListPageState extends State<PredioListPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "CALLE DE LAS PRUEBAS...",
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          Text(
                             "Arequipa, Arequipa, Arequipa",
-                            style: TextStyle(fontWeight: FontWeight.w300),
+                            // style: TextStyle(fontWeight: FontWeight.w300),
                           ),
                         ],
                       ),

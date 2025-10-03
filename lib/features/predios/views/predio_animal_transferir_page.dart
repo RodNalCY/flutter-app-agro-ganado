@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:proinnovate_flutter_app/features/core/widgets/flushbar_widget.dart';
 
 class PredioAnimalTransferirPage extends StatefulWidget {
   const PredioAnimalTransferirPage({Key? key}) : super(key: key);
@@ -65,15 +66,16 @@ class _PredioAnimalTransferirPageState
                         Container(
                           child: DropdownSearch<String>(
                             items: (filter, infiniteScrollProps) => [
-                              "Lima",
-                              "Huanuco",
-                              "Pasco",
-                              "Arequipa",
-                              "Tumbes",
+                              "Traspaso",
+                              "Cesión",
+                              "Retención",
+                              "Conservación",
+                              "Permanencia",
                             ],
                             decoratorProps: DropDownDecoratorProps(
                               decoration: InputDecoration(
                                 isDense: true,
+                                hintText: "seleccione",
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15),
                                 ),
@@ -109,6 +111,7 @@ class _PredioAnimalTransferirPageState
                             },
                             readOnly: true,
                             decoration: InputDecoration(
+                              hintText: "ingrese la fecha",
                               isDense: true,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15),
@@ -134,6 +137,7 @@ class _PredioAnimalTransferirPageState
                   maxLines: 4,
                   decoration: InputDecoration(
                     isDense: true,
+                    hintText: "Escribe tus observaciones aquí",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
@@ -149,8 +153,10 @@ class _PredioAnimalTransferirPageState
               ),
               Container(
                 child: TextFormField(
+                  readOnly: true,
                   decoration: InputDecoration(
                     isDense: true,
+                    hintText: "Adjuntar archivo",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
@@ -182,9 +188,9 @@ class _PredioAnimalTransferirPageState
                 ),
               ),
               SizedBox(height: 10),
-              buildInfoProductor(),
-              buildInfoProductor(),
-              buildInfoProductor(),
+              buildInfoProductor(context),
+              buildInfoProductor(context),
+              buildInfoProductor(context),
               SizedBox(height: 10),
 
               Container(
@@ -194,12 +200,19 @@ class _PredioAnimalTransferirPageState
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.blue,
                   ),
-                  onPressed: () {},
-                  icon: const Icon(Icons.add, size: 25),
+                  onPressed: () {
+                    FlushbarWidget.show(
+                      context: context,
+                      message: "Animal transferido con éxito",
+                      icon: Icons.save,
+                      color: Colors.blue,
+                    );
+                  },
+                  icon: const Icon(Icons.sync, size: 25),
                   label: Container(
                     padding: EdgeInsets.only(right: 10),
                     child: const Text(
-                      'Guardar predio',
+                      'Transferir animal',
                       style: TextStyle(fontSize: 18),
                     ),
                   ),
@@ -213,45 +226,56 @@ class _PredioAnimalTransferirPageState
     );
   }
 
-  Card buildInfoProductor() {
-    return Card(
-      elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Row(
-          children: <Widget>[
-            // Icon(Icons.apartment, size: 45),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "BOV-181293",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  Text(
-                    "Bovino hembra para reproducción",
-                    style: TextStyle(fontWeight: FontWeight.w300),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.apartment, size: 20),
-                      Text(
-                        "PREDIOS GANADEROS PRUEBAS",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ),
-                ],
+  Widget buildInfoProductor(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        // Navegar a la página de detalles del productor
+        FlushbarWidget.show(
+          context: context,
+          message: "Animal seleccionado con éxito",
+          icon: Icons.check_circle,
+          color: Colors.blue,
+        );
+      },
+      child: Card(
+        elevation: 5,
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(
+            children: <Widget>[
+              // Icon(Icons.apartment, size: 45),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "BOV-181293",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      "Bovino hembra para reproducción",
+                      style: TextStyle(fontWeight: FontWeight.w300),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.apartment, size: 20),
+                        Text(
+                          "PREDIOS GANADEROS PRUEBAS",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

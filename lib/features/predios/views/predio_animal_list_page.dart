@@ -108,7 +108,7 @@ class _PredioAnimalListPageState extends State<PredioAnimalListPage> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
-            height: 240,
+            height: 190,
             width: 140,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
@@ -133,15 +133,7 @@ class _PredioAnimalListPageState extends State<PredioAnimalListPage> {
                     style: TextStyle(fontWeight: FontWeight.w300),
                   ),
                   Divider(color: Colors.grey),
-                  // ROW REGISTRO HAPPY
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: <Widget>[
-                      Icon(Icons.cake, size: 28),
-                      Text("12/03/2022", style: TextStyle(fontSize: 16)),
-                    ],
-                  ),
+
                   // ROW ENFERMEDAD
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -151,12 +143,8 @@ class _PredioAnimalListPageState extends State<PredioAnimalListPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Diarrea viral bovina (DVB)",
+                            "El animal está sano",
                             style: TextStyle(fontSize: 16),
-                          ),
-                          Text(
-                            "06/07/2025 - 08/09/2025",
-                            style: TextStyle(fontWeight: FontWeight.w300),
                           ),
                         ],
                       ),
@@ -171,12 +159,8 @@ class _PredioAnimalListPageState extends State<PredioAnimalListPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Lote de queso QSO-134285",
+                            "Produjo hace 12 días",
                             style: TextStyle(fontSize: 16),
-                          ),
-                          Text(
-                            "07/08/2025",
-                            style: TextStyle(fontWeight: FontWeight.w300),
                           ),
                         ],
                       ),
