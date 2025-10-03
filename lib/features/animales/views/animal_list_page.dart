@@ -18,34 +18,6 @@ class AnimalListPage extends StatelessWidget {
         repository: AnimalRepository(apiService: AnimalApiService()),
       )..fetchAnimals(),
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text("Animales", style: TextStyle(color: Colors.white)),
-          backgroundColor: Colors.lightBlueAccent,
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(60),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Consumer<AnimalViewModel>(
-                builder: (context, viewModel, child) {
-                  return TextField(
-                    decoration: InputDecoration(
-                      hintText: "Buscar animal...",
-                      prefixIcon: Icon(Icons.search),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                    ),
-                    onChanged: (value) {
-                      viewModel.filterAnimals(value);
-                    },
-                  );
-                },
-              ),
-            ),
-          ),
-        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
             // FlushbarWidget.show(
@@ -60,30 +32,68 @@ class AnimalListPage extends StatelessWidget {
           child: const Icon(Icons.add, size: 32, color: Colors.white),
           shape: const CircleBorder(),
         ),
-        body: Consumer<AnimalViewModel>(
-          builder: (context, viewModel, child) {
-            if (viewModel.isLoading) {
-              return const LinearProgressIndicator(
-                backgroundColor: Colors.white,
-                color: Colors.blue,
-              );
-            }
+        body: Column(
+          children: [
+            Card(
+              elevation: 2,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 5,
+                  vertical: 10,
+                ),
+                child: PreferredSize(
+                  preferredSize: const Size.fromHeight(60),
+                  child: Consumer<AnimalViewModel>(
+                    builder: (context, viewModel, child) {
+                      return TextField(
+                        decoration: InputDecoration(
+                          hintText: "Buscar animal...",
+                          prefixIcon: Icon(Icons.search),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                        ),
+                        onChanged: (value) {
+                          viewModel.filterAnimals(value);
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+            Consumer<AnimalViewModel>(
+              builder: (context, viewModel, child) {
+                if (viewModel.isLoading) {
+                  return const LinearProgressIndicator(
+                    backgroundColor: Colors.white,
+                    color: Colors.blue,
+                  );
+                }
 
-            if (viewModel.error != null) {
-              return Center(child: Text("Error: ${viewModel.error}"));
-            }
+                if (viewModel.error != null) {
+                  return Center(child: Text("Error: ${viewModel.error}"));
+                }
 
-            if (viewModel.animals.isEmpty) {
-              return const Center(child: Text("No hay animales disponibles"));
-            }
+                if (viewModel.animals.isEmpty) {
+                  return const Center(
+                    child: Text("No hay animales disponibles"),
+                  );
+                }
 
-            return ListView.builder(
-              itemCount: viewModel.animals.length,
-              itemBuilder: (context, index) {
-                return AnimalCard(animal: viewModel.animals[index]);
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: viewModel.animals.length,
+                    itemBuilder: (context, index) {
+                      return AnimalCard(animal: viewModel.animals[index]);
+                    },
+                  ),
+                );
               },
-            );
-          },
+            ),
+          ],
         ),
       ),
     );

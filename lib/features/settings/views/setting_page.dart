@@ -57,6 +57,7 @@ class _SettingPageState extends State<SettingPage> {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.lightBlueAccent,
+        foregroundColor: Colors.white,
       ),
       body: ListView(
         padding: const EdgeInsets.all(16.0),
@@ -85,7 +86,7 @@ class _SettingPageState extends State<SettingPage> {
                         : _pickImage, // deshabilita si está ocupado
                     child: Container(
                       decoration: const BoxDecoration(
-                        color: Colors.blue,
+                        color: Colors.black,
                         shape: BoxShape.circle,
                       ),
                       padding: const EdgeInsets.all(8),

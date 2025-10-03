@@ -17,13 +17,13 @@ class _CalendarListPageState extends State<CalendarListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Calendario",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Colors.lightBlueAccent,
-      ),
+      // appBar: AppBar(
+      //   title: Text(
+      //     "Calendario",
+      //     style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+      //   ),
+      //   backgroundColor: Colors.lightBlueAccent,
+      // ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(
@@ -78,7 +78,36 @@ class _CalendarListPageState extends State<CalendarListPage> {
                   },
                 ),
               ),
-
+              SizedBox(height: 10),
+              Card(
+                elevation: 2,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 5,
+                    vertical: 10,
+                  ),
+                  child: PreferredSize(
+                    preferredSize: const Size.fromHeight(60),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: "Buscar...",
+                        prefixIcon: Icon(Icons.search),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                      ),
+                      onChanged: (value) {
+                        // viewModel.filterAnimals(value);
+                      },
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
+              buildCardList(context),
+              buildCardList(context),
               buildCardList(context),
             ],
           ),

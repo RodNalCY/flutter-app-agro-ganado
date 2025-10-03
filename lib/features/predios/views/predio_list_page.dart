@@ -14,18 +14,37 @@ class _PredioListPageState extends State<PredioListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Predios",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Colors.lightBlueAccent,
-      ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(
           child: Column(
             children: <Widget>[
+              Card(
+                elevation: 2,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 5,
+                    vertical: 10,
+                  ),
+                  child: PreferredSize(
+                    preferredSize: const Size.fromHeight(60),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: "Buscar predio...",
+                        prefixIcon: Icon(Icons.search),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                      ),
+                      onChanged: (value) {
+                        // viewModel.filterAnimals(value);
+                      },
+                    ),
+                  ),
+                ),
+              ),
               buildCardList(context),
               buildCardList(context),
               buildCardList(context),
