@@ -3,6 +3,9 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:proinnovate_flutter_app/features/animales/viewmodels/destino_view_model.dart';
 import 'package:proinnovate_flutter_app/features/animales/viewmodels/tipo_ganado_view_model.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/widgets/destino_dropdown.dart';
+import 'package:proinnovate_flutter_app/features/core/widgets/flushbar_widget.dart';
+import 'package:proinnovate_flutter_app/features/core/widgets/navigator_widget.dart';
+import 'package:proinnovate_flutter_app/features/predios/views/predio_add_page.dart';
 import 'package:provider/provider.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/widgets/tipo_ganado_dropdown.dart';
 
@@ -109,7 +112,14 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                           foregroundColor: Colors.white,
                           backgroundColor: Colors.blue,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          FlushbarWidget.show(
+                            context: context,
+                            message: "Sincronizando...",
+                            icon: Icons.sync,
+                            color: Colors.blue,
+                          );
+                        },
                         icon: const Icon(Icons.sync, size: 25),
                         label: const Text(
                           'Sincronizar',
@@ -148,12 +158,13 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                     ),
                   ),
                   SizedBox(width: 10),
+
                   Expanded(
                     child: Column(
                       children: [
                         Row(
                           children: [
-                            Text("Sexo", style: TextStyle(fontSize: 17)),
+                            Text("Raza", style: TextStyle(fontSize: 17)),
                             Text(
                               "*",
                               style: TextStyle(fontSize: 18, color: Colors.red),
@@ -165,21 +176,59 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                             // key: dropDownKey,
                             // selectedItem: "Menu",
                             items: (filter, infiniteScrollProps) => [
-                              "Macho",
-                              "Hembra",
+                              "Holstein",
+                              "Brown Swiss",
+                              "Jersey",
+                              "Ayrshire",
+                              "Guernsey",
+                              "Simmental",
+                              "Charolais",
+                              "Hereford",
+                              "Angus",
+                              "Shorthorn",
+                              "Limousin",
+                              "Normando",
+                              "Brahman",
+                              "Gyr",
+                              "Nellore",
+                              "Santa Gertrudis",
+                              "Beefmaster",
+                              "Chianina",
+                              "Blonde d'Aquitaine",
+                              "Brangus",
                             ],
                             decoratorProps: DropDownDecoratorProps(
                               decoration: InputDecoration(
-                                hintText: "Seleccione",
                                 isDense: true,
+                                hintText: "Seleccione",
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15),
                                 ),
                               ),
                             ),
-                            popupProps: PopupProps.menu(
+                            popupProps: PopupProps.modalBottomSheet(
+                              modalBottomSheetProps: ModalBottomSheetProps(
+                                barrierDismissible:
+                                    true, //se cierra al tocar fuera
+                                useSafeArea: true,
+                                showDragHandle: true,
+                              ),
+
                               fit: FlexFit.loose,
-                              constraints: BoxConstraints(),
+                              constraints: BoxConstraints(
+                                maxHeight:
+                                    MediaQuery.of(context).size.height *
+                                    0.5, // máximo la mitad de la pantalla
+                              ),
+                              showSearchBox: true,
+                              searchFieldProps: TextFieldProps(
+                                decoration: InputDecoration(
+                                  hintText: "Buscar...",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -265,7 +314,7 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                       children: [
                         Row(
                           children: [
-                            Text("Raza", style: TextStyle(fontSize: 17)),
+                            Text("Sexo", style: TextStyle(fontSize: 17)),
                             Text(
                               "*",
                               style: TextStyle(fontSize: 18, color: Colors.red),
@@ -277,15 +326,11 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                             // key: dropDownKey,
                             // selectedItem: "Menu",
                             items: (filter, infiniteScrollProps) => [
-                              "Raza 1",
-                              "Raza 2",
-                              "Raza 3",
-                              "Raza 4",
-                              "Raza 5",
+                              "Macho",
+                              "Hembra",
                             ],
                             decoratorProps: DropDownDecoratorProps(
                               decoration: InputDecoration(
-                                // labelText: 'Examples for: ',
                                 hintText: "Seleccione",
                                 isDense: true,
                                 border: OutlineInputBorder(
@@ -333,7 +378,7 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                 ],
               ),
               // INFO PRODUCTOR
-              buildInfoProductor(),
+              buildInfoProductor(context),
               SizedBox(height: 10),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -342,9 +387,18 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                 ],
               ),
               // CARD NACIMIENTO Y CESE
-              buildCardDateInfo(),
-              buildCardDateInfo(),
-
+              buildCardDateInfo(
+                context,
+                "04/01/2016",
+                "Av. de las Pruebas Mz. A Lt. 13, Arequipa, Arequipa, Arequipa",
+                Icons.cake,
+              ),
+              buildCardDateInfo(
+                context,
+                "21/01/2025",
+                "Av. de las Pruebas Mz. A Lt. 13, Arequipa, Arequipa, Arequipa",
+                Icons.spa,
+              ),
               SizedBox(height: 10),
               // TEXT & BUTTON
               Row(
@@ -371,6 +425,7 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                   ),
                 ],
               ),
+              SizedBox(height: 10),
               // IMAGE UPLOAD
               Container(
                 height: 240,
@@ -390,80 +445,96 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
     );
   }
 
-  Card buildInfoProductor() {
-    return Card(
-      elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Row(
-          children: <Widget>[
-            Icon(Icons.apartment, size: 45),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "RUC 20123456789",
-                    style: TextStyle(fontWeight: FontWeight.w300),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  Text(
-                    "EMPRESA GANADERA S.A.",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  Text(
-                    "Arequipa, Arequipa, Arequipa | 1240 animales",
-                    style: TextStyle(fontWeight: FontWeight.w300),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
+  Widget buildInfoProductor(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        FlushbarWidget.show(
+          context: context,
+          message: "Predio seleccionado con exito",
+          icon: Icons.check_circle,
+          color: Colors.blue,
+        );
+      },
+      child: Card(
+        elevation: 5,
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(
+            children: <Widget>[
+              Icon(Icons.apartment, size: 45),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Text(
+                    //   "RUC 20123456789",
+                    //   style: TextStyle(fontWeight: FontWeight.w300),
+                    //   maxLines: 1,
+                    //   overflow: TextOverflow.ellipsis,
+                    // ),
+                    Text(
+                      "EMPRESA GANADERA S.A.",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      "Arequipa, Arequipa, Arequipa | 1240 animales",
+                      style: TextStyle(fontWeight: FontWeight.w300),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Card buildCardDateInfo() {
-    return Card(
-      elevation: 5,
-      child: Padding(
-        padding: EdgeInsets.all(10.0),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.cake),
-                      Text("21/01/2026", style: TextStyle(fontSize: 17)),
-                    ],
-                  ),
-                  Text(
-                    "Av. de las Pruebas Mz. A Lt. 13, Arequipa, Arequipa, Arequipa",
-                    style: TextStyle(color: Colors.grey),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  Text(
-                    "Peso: 40 kg | Talla: 100 cm",
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ],
+  Widget buildCardDateInfo(
+    BuildContext context,
+    String fecha,
+    String direccion,
+    IconData icon,
+  ) {
+    return GestureDetector(
+      onTap: () {
+        FlushbarWidget.show(
+          context: context,
+          message: "Seleccionado: $fecha",
+          icon: icon,
+          color: Colors.blue,
+        );
+      },
+      child: Card(
+        elevation: 5,
+        child: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Row(
+            children: [
+              Icon(icon),
+              SizedBox(width: 5),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(fecha, style: TextStyle(fontSize: 17)),
+                    Text(
+                      direccion,
+                      style: TextStyle(color: Colors.grey),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Icon(Icons.edit, size: 30),
-            ),
-          ],
+              SizedBox(width: 5),
+              Icon(Icons.edit),
+            ],
+          ),
         ),
       ),
     );
@@ -490,7 +561,12 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                       foregroundColor: Colors.white,
                       backgroundColor: Colors.blue,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      NavigatorWidget.pushWithSlideUp(
+                        context,
+                        PredioAddPage(statusHeader: true),
+                      );
+                    },
                     icon: const Icon(Icons.add, size: 25),
                     label: Container(
                       padding: EdgeInsets.only(right: 10),
@@ -518,9 +594,9 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                   ),
                 ),
                 SizedBox(height: 10),
-                buildInfoProductor(),
-                buildInfoProductor(),
-                buildInfoProductor(),
+                buildInfoProductor(context),
+                buildInfoProductor(context),
+                buildInfoProductor(context),
               ],
             ),
           ),

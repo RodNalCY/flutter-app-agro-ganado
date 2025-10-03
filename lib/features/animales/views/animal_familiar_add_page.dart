@@ -1,5 +1,7 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:proinnovate_flutter_app/features/core/widgets/flushbar_widget.dart';
 
 class AnimalFamiliarAddPage extends StatefulWidget {
   const AnimalFamiliarAddPage({Key? key}) : super(key: key);
@@ -44,24 +46,53 @@ class _AnimalFamiliarAddPageState extends State<AnimalFamiliarAddPage> {
                         Container(
                           child: DropdownSearch<String>(
                             items: (filter, infiniteScrollProps) => [
-                              "Padre",
+                              "Toro",
+                              "Vaca",
+                              "Novillo",
+                              "Vaquilla",
+                              "Ternero",
+                              "Ternera",
+                              "Becerro",
+                              "Becerra",
+                              "Semental",
                               "Madre",
-                              "Hijo/Hija",
-                              "Hermano/Hermana",
-                              "Otros",
+                              "Padre",
+                              "Hijo",
+                              "Hija",
+                              "Hermano",
+                              "Hermana",
                             ],
                             decoratorProps: DropDownDecoratorProps(
                               decoration: InputDecoration(
-                                hint: Text("Seleccione el parentezco"),
                                 isDense: true,
+                                hintText: "Seleccione",
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15),
                                 ),
                               ),
                             ),
-                            popupProps: PopupProps.menu(
+                            popupProps: PopupProps.modalBottomSheet(
+                              modalBottomSheetProps: ModalBottomSheetProps(
+                                barrierDismissible:
+                                    true, //se cierra al tocar fuera
+                                useSafeArea: true,
+                                showDragHandle: true,
+                              ),
                               fit: FlexFit.loose,
-                              constraints: BoxConstraints(),
+                              constraints: BoxConstraints(
+                                maxHeight:
+                                    MediaQuery.of(context).size.height *
+                                    0.5, // máximo la mitad de la pantalla
+                              ),
+                              showSearchBox: true,
+                              searchFieldProps: TextFieldProps(
+                                decoration: InputDecoration(
+                                  hintText: "Buscar...",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -79,6 +110,7 @@ class _AnimalFamiliarAddPageState extends State<AnimalFamiliarAddPage> {
               ),
               Container(
                 child: TextFormField(
+                  readOnly: true,
                   decoration: InputDecoration(
                     isDense: true,
                     hint: Text("Adjunte el archivo"),
@@ -125,7 +157,14 @@ class _AnimalFamiliarAddPageState extends State<AnimalFamiliarAddPage> {
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.blue,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    FlushbarWidget.show(
+                      context: context,
+                      message: "Se guardó el familiar con éxito",
+                      icon: Icons.save,
+                      color: Colors.blue,
+                    );
+                  },
                   icon: const Icon(Icons.add, size: 25),
                   label: Container(
                     padding: EdgeInsets.only(right: 10),

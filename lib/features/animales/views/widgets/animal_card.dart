@@ -15,8 +15,8 @@ class AnimalCard extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            height: 240,
-            width: 140,
+            height: 180,
+            width: 120,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
@@ -40,13 +40,13 @@ class AnimalCard extends StatelessWidget {
                   ),
                   Text(animal.destino.descripcion),
                   Divider(),
-                  Row(
-                    children: [
-                      Icon(Icons.cake, size: 20),
-                      SizedBox(width: 5),
-                      Text(convertDateText(animal.fechaNacimiento)),
-                    ],
-                  ),
+                  // Row(
+                  //   children: [
+                  //     Icon(Icons.cake, size: 20),
+                  //     SizedBox(width: 5),
+                  //     Text(convertDateText(animal.fechaNacimiento)),
+                  //   ],
+                  // ),
                   Row(
                     children: [
                       Icon(Icons.coronavirus, size: 20),
@@ -56,31 +56,7 @@ class AnimalCard extends StatelessWidget {
                         children: [
                           Text(
                             animal.ultimoRegistroMedico?.enfermedad?.nombre ??
-                                'Sin Enfermedad',
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                animal.ultimoRegistroMedico != null
-                                    ? convertDateText(
-                                        animal
-                                            .ultimoRegistroMedico!
-                                            .fechaRegistro
-                                            .toString(),
-                                      )
-                                    : '--/--/----',
-                              ),
-                              Text(' | '),
-                              Text(
-                                animal.ultimoRegistroMedico != null &&
-                                        animal.ultimoRegistroMedico!.fechaFin !=
-                                            null
-                                    ? convertDateText(
-                                        animal.ultimoRegistroMedico!.fechaFin!,
-                                      )
-                                    : '--/--/----',
-                              ),
-                            ],
+                                'El animal está sano',
                           ),
                         ],
                       ),
@@ -93,8 +69,8 @@ class AnimalCard extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Lote de queso QSO-134285'),
-                          Text("09/10/2025"),
+                          Text('Produjo hace 12 días'),
+                          // Text("09/10/2025"),
                         ],
                       ),
                     ],

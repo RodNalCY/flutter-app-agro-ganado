@@ -212,6 +212,7 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
               ),
               Container(
                 child: TextFormField(
+                  readOnly: true,
                   decoration: InputDecoration(
                     isDense: true,
                     hintText: "Adjunta un archivo...",
@@ -247,7 +248,14 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.blue,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    FlushbarWidget.show(
+                      context: context,
+                      message: "Historial guardado con éxito",
+                      icon: Icons.save,
+                      color: Colors.blue,
+                    );
+                  },
                   icon: const Icon(Icons.add, size: 25),
                   label: Container(
                     padding: EdgeInsets.only(right: 10),
@@ -429,22 +437,63 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
                   Container(
                     child: DropdownSearch<String>(
                       items: (filter, infiniteScrollProps) => [
+                        "Carne de res",
                         "Leche",
-                        "Carne",
-                        "Enbotidos",
+                        "Queso",
+                        "Mantequilla",
+                        "Yogur",
+                        "Crema de leche",
+                        "Helado",
+                        "Cuero",
+                        "Gelatina",
+                        "Grasa bovina (sebo)",
+                        "Harina de hueso",
+                        "Sueros lácteos",
+                        "Leche en polvo",
+                        "Carne seca (charqui)",
+                        "Vísceras comestibles",
+                        "Colágeno bovino",
                       ],
+                      dropdownBuilder: (context, selectedItem) {
+                        return Text(
+                          selectedItem ?? "Seleccione",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        );
+                      },
                       decoratorProps: DropDownDecoratorProps(
                         decoration: InputDecoration(
                           isDense: true,
-                          hintText: "Seleccione",
+                          // isCollapsed: true,
+                          // hintText: "Seleccione",
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
                           ),
                         ),
                       ),
-                      popupProps: PopupProps.menu(
+
+                      popupProps: PopupProps.modalBottomSheet(
+                        modalBottomSheetProps: ModalBottomSheetProps(
+                          barrierDismissible: true, //se cierra al tocar fuera
+                          useSafeArea: true,
+                          showDragHandle: true,
+                        ),
+
                         fit: FlexFit.loose,
-                        constraints: BoxConstraints(),
+                        constraints: BoxConstraints(
+                          maxHeight:
+                              MediaQuery.of(context).size.height *
+                              0.4, // máximo la mitad de la pantalla
+                        ),
+                        showSearchBox: true,
+                        searchFieldProps: TextFieldProps(
+                          decoration: InputDecoration(
+                            hintText: "Buscar...",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),

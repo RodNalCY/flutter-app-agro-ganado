@@ -3,7 +3,8 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/flushbar_widget.dart';
 
 class PredioAddPage extends StatefulWidget {
-  const PredioAddPage({Key? key}) : super(key: key);
+  final bool statusHeader;
+  const PredioAddPage({Key? key, required this.statusHeader}) : super(key: key);
 
   @override
   _PredioAddPageState createState() => _PredioAddPageState();
@@ -13,6 +14,16 @@ class _PredioAddPageState extends State<PredioAddPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: widget.statusHeader
+          ? AppBar(
+              title: const Text(
+                "Agregar Predio",
+                style: TextStyle(color: Colors.white),
+              ),
+              backgroundColor: Colors.lightBlueAccent,
+              iconTheme: IconThemeData(color: Colors.white),
+            )
+          : null,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(
@@ -244,7 +255,13 @@ class _PredioAddPageState extends State<PredioAddPage> {
                                 ),
                               ),
                             ),
-                            popupProps: PopupProps.bottomSheet(
+                            popupProps: PopupProps.modalBottomSheet(
+                              modalBottomSheetProps: ModalBottomSheetProps(
+                                barrierDismissible:
+                                    true, //se cierra al tocar fuera
+                                useSafeArea: true,
+                                showDragHandle: true,
+                              ),
                               fit: FlexFit.loose,
                               constraints: BoxConstraints(
                                 maxHeight:
@@ -302,7 +319,13 @@ class _PredioAddPageState extends State<PredioAddPage> {
                                 ),
                               ),
                             ),
-                            popupProps: PopupProps.bottomSheet(
+                            popupProps: PopupProps.modalBottomSheet(
+                              modalBottomSheetProps: ModalBottomSheetProps(
+                                barrierDismissible:
+                                    true, //se cierra al tocar fuera
+                                useSafeArea: true,
+                                showDragHandle: true,
+                              ),
                               fit: FlexFit.loose,
                               constraints: BoxConstraints(
                                 maxHeight:
@@ -397,7 +420,13 @@ class _PredioAddPageState extends State<PredioAddPage> {
                                 ),
                               ),
                             ),
-                            popupProps: PopupProps.bottomSheet(
+                            popupProps: PopupProps.modalBottomSheet(
+                              modalBottomSheetProps: ModalBottomSheetProps(
+                                barrierDismissible:
+                                    true, //se cierra al tocar fuera
+                                useSafeArea: true,
+                                showDragHandle: true,
+                              ),
                               fit: FlexFit.loose,
                               constraints: BoxConstraints(
                                 maxHeight:

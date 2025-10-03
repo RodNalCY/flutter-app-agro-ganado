@@ -96,9 +96,9 @@ class _AnimalCalendarioListPageState extends State<AnimalCalendarioListPage> {
                 ),
               ),
 
-              buildCardList(),
-              buildCardList(),
-              buildCardList(),
+              buildCardList(context),
+              buildCardList(context),
+              buildCardList(context),
             ],
           ),
         ),
@@ -106,7 +106,7 @@ class _AnimalCalendarioListPageState extends State<AnimalCalendarioListPage> {
     );
   }
 
-  Widget buildCardList() {
+  Widget buildCardList(BuildContext context) {
     return Card(
       elevation: 4,
       child: Row(
@@ -165,7 +165,12 @@ class _AnimalCalendarioListPageState extends State<AnimalCalendarioListPage> {
                           ),
 
                           onPressed: () {
-                            // snackbarEditar();
+                            FlushbarWidget.show(
+                              context: context,
+                              message: "Editar consulta médica",
+                              icon: Icons.edit,
+                              color: Colors.blue,
+                            );
                           },
                           icon: const Icon(Icons.edit),
                           label: const Text(
@@ -184,7 +189,12 @@ class _AnimalCalendarioListPageState extends State<AnimalCalendarioListPage> {
                             foregroundColor: Colors.red,
                           ),
                           onPressed: () {
-                            // snackbarEliminar();
+                            FlushbarWidget.show(
+                              context: context,
+                              message: "Eliminar consulta médica",
+                              icon: Icons.delete,
+                              color: Colors.red,
+                            );
                           },
                           icon: const Icon(Icons.delete),
                           label: const Text(

@@ -98,9 +98,9 @@ class _AnimalHistorialListPageState extends State<AnimalHistorialListPage> {
                 ),
               ),
 
-              buildCardList(),
-              buildCardList(),
-              buildCardList(),
+              buildCardList(context),
+              buildCardList(context),
+              buildCardList(context),
             ],
           ),
         ),
@@ -135,7 +135,7 @@ class _AnimalHistorialListPageState extends State<AnimalHistorialListPage> {
     );
   }
 
-  Widget buildCardList() {
+  Widget buildCardList(BuildContext context) {
     return Card(
       elevation: 4,
       child: Row(
@@ -194,7 +194,12 @@ class _AnimalHistorialListPageState extends State<AnimalHistorialListPage> {
                           ),
 
                           onPressed: () {
-                            // snackbarEditar();
+                            FlushbarWidget.show(
+                              context: context,
+                              message: "Editar consulta médica",
+                              icon: Icons.edit,
+                              color: Colors.blue,
+                            );
                           },
                           icon: const Icon(Icons.edit),
                           label: const Text(
@@ -213,7 +218,12 @@ class _AnimalHistorialListPageState extends State<AnimalHistorialListPage> {
                             foregroundColor: Colors.red,
                           ),
                           onPressed: () {
-                            // snackbarEliminar();
+                            FlushbarWidget.show(
+                              context: context,
+                              message: "Eliminar consulta médica",
+                              icon: Icons.delete,
+                              color: Colors.red,
+                            );
                           },
                           icon: const Icon(Icons.delete),
                           label: const Text(

@@ -39,7 +39,7 @@ class _PredioHomePageState extends State<PredioHomePage> {
         // body: Center(child: Text("Agregar Predio")),
         body: TabBarView(
           children: [
-            PredioAddPage(),
+            PredioAddPage(statusHeader: false),
             PredioAnimalListPage(),
             PredioPropietarioListPage(),
           ],

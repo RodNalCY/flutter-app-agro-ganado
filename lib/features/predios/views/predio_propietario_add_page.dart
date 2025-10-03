@@ -293,7 +293,13 @@ class _PredioPropietarioAddPageState extends State<PredioPropietarioAddPage> {
                                 ),
                               ),
                             ),
-                            popupProps: PopupProps.bottomSheet(
+                            popupProps: PopupProps.modalBottomSheet(
+                              modalBottomSheetProps: ModalBottomSheetProps(
+                                barrierDismissible:
+                                    true, //se cierra al tocar fuera
+                                useSafeArea: true,
+                                showDragHandle: true,
+                              ),
                               fit: FlexFit.loose,
                               constraints: BoxConstraints(
                                 maxHeight:
@@ -398,7 +404,13 @@ class _PredioPropietarioAddPageState extends State<PredioPropietarioAddPage> {
                                 ),
                               ),
                             ),
-                            popupProps: PopupProps.bottomSheet(
+                            popupProps: PopupProps.modalBottomSheet(
+                              modalBottomSheetProps: ModalBottomSheetProps(
+                                barrierDismissible:
+                                    true, //se cierra al tocar fuera
+                                useSafeArea: true,
+                                showDragHandle: true,
+                              ),
                               fit: FlexFit.loose,
                               constraints: BoxConstraints(
                                 maxHeight:
@@ -456,7 +468,13 @@ class _PredioPropietarioAddPageState extends State<PredioPropietarioAddPage> {
                                 ),
                               ),
                             ),
-                            popupProps: PopupProps.bottomSheet(
+                            popupProps: PopupProps.modalBottomSheet(
+                              modalBottomSheetProps: ModalBottomSheetProps(
+                                barrierDismissible:
+                                    true, //se cierra al tocar fuera
+                                useSafeArea: true,
+                                showDragHandle: true,
+                              ),
                               fit: FlexFit.loose,
                               constraints: BoxConstraints(
                                 maxHeight:
@@ -551,7 +569,13 @@ class _PredioPropietarioAddPageState extends State<PredioPropietarioAddPage> {
                                 ),
                               ),
                             ),
-                            popupProps: PopupProps.bottomSheet(
+                            popupProps: PopupProps.modalBottomSheet(
+                              modalBottomSheetProps: ModalBottomSheetProps(
+                                barrierDismissible:
+                                    true, //se cierra al tocar fuera
+                                useSafeArea: true,
+                                showDragHandle: true,
+                              ),
                               fit: FlexFit.loose,
                               constraints: BoxConstraints(
                                 maxHeight:
