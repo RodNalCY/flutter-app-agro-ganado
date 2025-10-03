@@ -25,7 +25,7 @@ class _AnimalCalendarioListPageState extends State<AnimalCalendarioListPage> {
         activeIcon: Icons.close,
         backgroundColor: Colors.lightBlue,
         foregroundColor: Colors.white,
-        // buttonSize: Size(65, 65),
+        iconTheme: const IconThemeData(size: 32),
         children: [
           SpeedDialChild(
             shape: const CircleBorder(),

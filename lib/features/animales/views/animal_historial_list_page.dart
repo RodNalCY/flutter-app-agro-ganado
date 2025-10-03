@@ -110,6 +110,7 @@ class _AnimalHistorialListPageState extends State<AnimalHistorialListPage> {
         activeIcon: Icons.close,
         backgroundColor: Colors.lightBlue,
         foregroundColor: Colors.white,
+        iconTheme: const IconThemeData(size: 32),
 
         // buttonSize: Size(65, 65),
         children: [
