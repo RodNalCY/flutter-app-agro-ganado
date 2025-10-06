@@ -1,4 +1,4 @@
-package pe.content.media.proinnovate
+package pe.contentmedia.ganadobovino.android
 
 import io.flutter.embedding.android.FlutterActivity
 
