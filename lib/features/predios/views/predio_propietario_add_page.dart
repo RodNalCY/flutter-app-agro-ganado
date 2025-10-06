@@ -39,7 +39,7 @@ class _PredioPropietarioAddPageState extends State<PredioPropietarioAddPage> {
           "Agregar Propietario",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.lightBlueAccent,
+        backgroundColor: Color(0xFF13161c),
         iconTheme: IconThemeData(color: Colors.white),
       ),
       body: SingleChildScrollView(
@@ -732,7 +732,7 @@ class _PredioPropietarioAddPageState extends State<PredioPropietarioAddPage> {
                 child: TextButton.icon(
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.white,
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Color(0xFF13161c),
                   ),
                   onPressed: () {
                     FlushbarWidget.show(

@@ -16,7 +16,7 @@ class _MedicalPageState extends State<MedicalPage> {
           "Predio",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.lightBlueAccent,
+        backgroundColor: Color(0xFF13161c),
       ),
       body: Container(
         child: Column(

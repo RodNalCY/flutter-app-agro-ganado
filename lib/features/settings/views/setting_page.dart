@@ -56,7 +56,7 @@ class _SettingPageState extends State<SettingPage> {
           "Setting",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.lightBlueAccent,
+        backgroundColor: Color(0xFF13161c),
         foregroundColor: Colors.white,
       ),
       body: ListView(
@@ -73,7 +73,7 @@ class _SettingPageState extends State<SettingPage> {
                     radius: 60,
                     backgroundImage: _profileImage != null
                         ? FileImage(_profileImage!)
-                        : const AssetImage("assets/perfil/perfil2.jpg")
+                        : const AssetImage("assets/perfil/perfil3.jpg")
                               as ImageProvider,
                   ),
                 ),
@@ -197,7 +197,7 @@ class _SettingPageState extends State<SettingPage> {
                   const SizedBox(height: 10),
                   ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: Color(0xFF13161c),
                       foregroundColor: Colors.white,
                       minimumSize: const Size.fromHeight(50),
                       shape: RoundedRectangleBorder(
@@ -211,7 +211,10 @@ class _SettingPageState extends State<SettingPage> {
                       );
                     },
                     icon: const Icon(Icons.save),
-                    label: const Text("Actualizar Contraseña"),
+                    label: const Text(
+                      "Actualizar Contraseña",
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ),
                 ],
               ),

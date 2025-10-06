@@ -21,7 +21,7 @@ class _PredioHomePageState extends State<PredioHomePage> {
             "Home Predio",
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
-          backgroundColor: Colors.lightBlueAccent,
+          backgroundColor: Color(0xFF13161c),
           iconTheme: const IconThemeData(
             color: Colors.white, // 👈 cambia el color del back arrow
           ),

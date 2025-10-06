@@ -47,7 +47,7 @@ class _CalendarListPageState extends State<CalendarListPage> {
                       shape: BoxShape.circle,
                     ),
                     selectedDecoration: BoxDecoration(
-                      color: Colors.lightBlue, // color del día seleccionado
+                      color: Colors.blueGrey, // color del día seleccionado
                       shape: BoxShape.circle,
                     ),
                     selectedTextStyle: const TextStyle(
@@ -134,7 +134,7 @@ class _CalendarListPageState extends State<CalendarListPage> {
                       Container(
                         padding: EdgeInsets.all(4.0),
                         decoration: BoxDecoration(
-                          color: Colors.blue,
+                          color: Color(0xFF13161c),
                           shape: BoxShape.rectangle,
                           borderRadius: BorderRadius.all(Radius.circular(7)),
                         ),
@@ -163,15 +163,17 @@ class _CalendarListPageState extends State<CalendarListPage> {
                       ),
                     ],
                   ),
-                  Divider(color: Colors.grey),
+                  Divider(),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Expanded(
                         child: TextButton.icon(
                           style: TextButton.styleFrom(
-                            shape: LinearBorder(),
-                            foregroundColor: Colors.blue,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            foregroundColor: Colors.white,
+                            backgroundColor: Colors.blueAccent,
                           ),
 
                           onPressed: () {
@@ -186,17 +188,21 @@ class _CalendarListPageState extends State<CalendarListPage> {
                           label: const Text(
                             'Editar',
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                              // fontWeight: FontWeight.bold,
                               fontSize: 17,
                             ),
                           ),
                         ),
                       ),
+                      SizedBox(width: 5),
                       Expanded(
                         child: TextButton.icon(
                           style: TextButton.styleFrom(
-                            shape: LinearBorder(),
-                            foregroundColor: Colors.red,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            foregroundColor: Colors.white,
+                            backgroundColor: Colors.redAccent,
                           ),
                           onPressed: () {
                             FlushbarWidget.show(
@@ -210,7 +216,7 @@ class _CalendarListPageState extends State<CalendarListPage> {
                           label: const Text(
                             'Eliminar',
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                              // fontWeight: FontWeight.bold,
                               fontSize: 17,
                             ),
                           ),

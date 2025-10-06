@@ -28,7 +28,7 @@ class AnimalListPage extends StatelessWidget {
             // );
             NavigatorWidget.pushWithSlideUp(context, AnimalHomePage());
           },
-          backgroundColor: Colors.lightBlue,
+          backgroundColor: Color(0xFF13161c),
           child: const Icon(Icons.add, size: 32, color: Colors.white),
           shape: const CircleBorder(),
         ),
@@ -69,12 +69,12 @@ class AnimalListPage extends StatelessWidget {
                 if (viewModel.isLoading) {
                   return const LinearProgressIndicator(
                     backgroundColor: Colors.white,
-                    color: Colors.blue,
+                    color: Color(0xFF13161c),
                   );
                 }
 
                 if (viewModel.error != null) {
-                  return Center(child: Text("Error: ${viewModel.error}"));
+                  return Center(child: Text("${viewModel.error}"));
                 }
 
                 if (viewModel.animals.isEmpty) {

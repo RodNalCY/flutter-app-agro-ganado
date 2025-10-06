@@ -1,4 +1,3 @@
-import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/flushbar_widget.dart';
@@ -19,7 +18,7 @@ class _AnimalFamiliarAddPageState extends State<AnimalFamiliarAddPage> {
           'Registrar familiar de animal',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Color(0xFF13161c),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: SingleChildScrollView(
@@ -155,7 +154,7 @@ class _AnimalFamiliarAddPageState extends State<AnimalFamiliarAddPage> {
                 child: TextButton.icon(
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.white,
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Color(0xFF13161c),
                   ),
                   onPressed: () {
                     FlushbarWidget.show(

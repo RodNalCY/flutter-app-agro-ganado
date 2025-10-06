@@ -34,7 +34,7 @@ class _HomePage extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         // title: Text("Proinnovate", style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.lightBlueAccent,
+        backgroundColor: const Color(0xFF13161c),
         elevation: 4,
         iconTheme: IconThemeData(color: Colors.white, size: 30),
       ),
@@ -43,7 +43,7 @@ class _HomePage extends State<HomePage> {
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              decoration: const BoxDecoration(color: Colors.lightBlueAccent),
+              decoration: const BoxDecoration(color: Color(0xFF13161c)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -58,7 +58,7 @@ class _HomePage extends State<HomePage> {
                             child: const CircleAvatar(
                               radius: 40,
                               backgroundImage: AssetImage(
-                                "assets/perfil/perfil2.jpg",
+                                "assets/perfil/perfil3.jpg",
                               ),
                             ),
                           ),
@@ -228,12 +228,12 @@ class _HomePage extends State<HomePage> {
         ),
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.lightBlue,
+          backgroundColor: Color(0xFF13161c),
           elevation: 8,
           onTap: onTapTapped,
           currentIndex: indexTap,
           selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.blueGrey,
+          unselectedItemColor: const Color.fromARGB(255, 105, 105, 105),
           // iconSize: 30, // 👈 íconos más grandes
           selectedFontSize: 12, // 👈 texto seleccionado más grande
           unselectedFontSize: 10, // 👈 texto normal más grande

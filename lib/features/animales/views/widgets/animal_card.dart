@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proinnovate_flutter_app/features/core/widgets/flushbar_widget.dart';
 import '../../models/animal.dart';
 
 class AnimalCard extends StatelessWidget {
@@ -15,7 +16,7 @@ class AnimalCard extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            height: 180,
+            height: 160,
             width: 120,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
@@ -29,8 +30,8 @@ class AnimalCard extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Padding(
-              padding: EdgeInsets.all(8.0),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -76,48 +77,59 @@ class AnimalCard extends StatelessWidget {
                     ],
                   ),
                   Divider(),
-
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Expanded(
                         child: TextButton.icon(
                           style: TextButton.styleFrom(
-                            // foregroundColor: Colors.white,
-                            // backgroundColor: Colors.blue,
-                            shape: LinearBorder(),
-                            foregroundColor: Colors.blue,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            foregroundColor: Colors.white,
+                            backgroundColor: Colors.blueAccent,
                           ),
 
                           onPressed: () {
-                            // snackbarEditar();
+                            FlushbarWidget.show(
+                              context: context,
+                              message: "Editar Activado",
+                              icon: Icons.info,
+                              color: Colors.blue,
+                            );
                           },
                           icon: const Icon(Icons.edit),
                           label: const Text(
                             'Editar',
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                              // fontWeight: FontWeight.bold,
                               fontSize: 17,
                             ),
                           ),
                         ),
                       ),
+                      SizedBox(width: 5),
                       Expanded(
                         child: TextButton.icon(
                           style: TextButton.styleFrom(
-                            // foregroundColor: Colors.white,
-                            // backgroundColor: Colors.red,
-                            shape: LinearBorder(),
-                            foregroundColor: Colors.red,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            foregroundColor: Colors.white,
+                            backgroundColor: Colors.redAccent,
                           ),
                           onPressed: () {
-                            // snackbarEliminar();
+                            FlushbarWidget.show(
+                              context: context,
+                              message: "Eliminar Activado",
+                              icon: Icons.info,
+                              color: Colors.red,
+                            );
                           },
                           icon: const Icon(Icons.delete),
                           label: const Text(
                             'Eliminar',
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                              // fontWeight: FontWeight.bold,
                               fontSize: 17,
                             ),
                           ),

@@ -49,7 +49,7 @@ class _PredioPropietarioListPageState extends State<PredioPropietarioListPage> {
         onPressed: () {
           NavigatorWidget.pushWithSlideUp(context, PredioPropietarioAddPage());
         },
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Color(0xFF13161c),
         child: Icon(Icons.add, size: 32, color: Colors.white),
         shape: const CircleBorder(),
       ),

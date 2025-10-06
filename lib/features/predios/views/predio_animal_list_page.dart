@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/animal_add_page.dart';
+import 'package:proinnovate_flutter_app/features/core/widgets/flushbar_widget.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/navigator_widget.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:proinnovate_flutter_app/features/predios/views/predio_animal_transferir_page.dart';
@@ -57,7 +58,7 @@ class _PredioAnimalListPageState extends State<PredioAnimalListPage> {
       floatingActionButton: SpeedDial(
         icon: Icons.add,
         activeIcon: Icons.close,
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Color(0xFF13161c),
         foregroundColor: Colors.white,
         iconTheme: const IconThemeData(size: 32),
         children: [
@@ -105,105 +106,113 @@ class _PredioAnimalListPageState extends State<PredioAnimalListPage> {
     return Card(
       elevation: 4,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
+        children: [
           Container(
-            height: 190,
-            width: 140,
+            height: 160,
+            width: 120,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
-                "https://laticiniosholandes.com.br/wp-content/uploads/2023/12/02_CicloDasVacas.png",
-                fit: BoxFit.cover,
+                "https://plus.unsplash.com/premium_photo-1668446123344-d7945fb07eaa?fm=jpg",
               ),
             ),
           ),
           Expanded(
-            child: Padding(
-              padding: EdgeInsets.all(8.0),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+                children: [
                   Text(
                     "BOV-181293",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
-                  Text(
-                    "Bovino macho para carne",
-                    style: TextStyle(fontWeight: FontWeight.w300),
-                  ),
-                  Divider(color: Colors.grey),
-
-                  // ROW ENFERMEDAD
+                  Text("Bovino macho para carne"),
+                  Divider(),
+                  // Row(
+                  //   children: [
+                  //     Icon(Icons.cake, size: 20),
+                  //     SizedBox(width: 5),
+                  //     Text(convertDateText(animal.fechaNacimiento)),
+                  //   ],
+                  // ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Icon(Icons.coronavirus, size: 30),
+                    children: [
+                      Icon(Icons.coronavirus, size: 20),
+                      SizedBox(width: 5),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [Text('El animal está sano')],
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.content_paste, size: 20),
+                      SizedBox(width: 5),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "El animal está sano",
-                            style: TextStyle(fontSize: 16),
-                          ),
+                          Text('Produjo hace 12 días'),
+                          // Text("09/10/2025"),
                         ],
                       ),
                     ],
                   ),
-                  //ROW LOTE
+                  Divider(),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Icon(Icons.content_paste, size: 30),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Produjo hace 12 días",
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Divider(color: Colors.grey),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Expanded(
                         child: TextButton.icon(
                           style: TextButton.styleFrom(
-                            shape: LinearBorder(),
-                            foregroundColor: Colors.blue,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            foregroundColor: Colors.white,
+                            backgroundColor: Colors.blueAccent,
                           ),
 
                           onPressed: () {
-                            // snackbarEditar();
+                            FlushbarWidget.show(
+                              context: context,
+                              message: "Editar Activado",
+                              icon: Icons.info,
+                              color: Colors.blue,
+                            );
                           },
                           icon: const Icon(Icons.edit),
                           label: const Text(
                             'Editar',
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                              // fontWeight: FontWeight.bold,
                               fontSize: 17,
                             ),
                           ),
                         ),
                       ),
+                      SizedBox(width: 5),
                       Expanded(
                         child: TextButton.icon(
                           style: TextButton.styleFrom(
-                            shape: LinearBorder(),
-                            foregroundColor: Colors.red,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            foregroundColor: Colors.white,
+                            backgroundColor: Colors.redAccent,
                           ),
                           onPressed: () {
-                            // snackbarEliminar();
+                            FlushbarWidget.show(
+                              context: context,
+                              message: "Eliminar Activado",
+                              icon: Icons.info,
+                              color: Colors.red,
+                            );
                           },
                           icon: const Icon(Icons.delete),
                           label: const Text(
                             'Eliminar',
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                              // fontWeight: FontWeight.bold,
                               fontSize: 17,
                             ),
                           ),

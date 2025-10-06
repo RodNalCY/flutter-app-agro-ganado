@@ -39,7 +39,7 @@ class _PredioAnimalTransferirPageState
           'Transferir Animal',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Color(0xFF13161c),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: SingleChildScrollView(
@@ -198,7 +198,7 @@ class _PredioAnimalTransferirPageState
                 child: TextButton.icon(
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.white,
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Color(0xFF13161c),
                   ),
                   onPressed: () {
                     FlushbarWidget.show(

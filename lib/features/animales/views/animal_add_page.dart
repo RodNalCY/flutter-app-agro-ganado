@@ -65,7 +65,7 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                 "Agregar Animal",
                 style: TextStyle(color: Colors.white),
               ),
-              backgroundColor: Colors.lightBlueAccent,
+              backgroundColor: Color(0xFF13161c),
               iconTheme: IconThemeData(color: Colors.white),
             )
           : null,
@@ -110,14 +110,14 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                       child: TextButton.icon(
                         style: TextButton.styleFrom(
                           foregroundColor: Colors.white,
-                          backgroundColor: Colors.blue,
+                          backgroundColor: Color(0xFF13161c),
                         ),
                         onPressed: () {
                           FlushbarWidget.show(
                             context: context,
                             message: "Sincronizando...",
                             icon: Icons.sync,
-                            color: Colors.blue,
+                            color: Color(0xFF13161c),
                           );
                         },
                         icon: const Icon(Icons.sync, size: 25),
@@ -360,7 +360,7 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                     child: TextButton.icon(
                       style: TextButton.styleFrom(
                         foregroundColor: Colors.white,
-                        backgroundColor: Colors.blue,
+                        backgroundColor: Color(0xFF13161c),
                       ),
                       onPressed: () {
                         showFormBottom(context);
@@ -410,7 +410,7 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                     child: TextButton.icon(
                       style: TextButton.styleFrom(
                         foregroundColor: Colors.white,
-                        backgroundColor: Colors.blue,
+                        backgroundColor: Color(0xFF13161c),
                       ),
                       onPressed: () {},
                       icon: const Icon(Icons.cloud_upload, size: 25),
@@ -452,7 +452,7 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
           context: context,
           message: "Predio seleccionado con exito",
           icon: Icons.check_circle,
-          color: Colors.blue,
+          color: Color(0xFF13161c),
         );
       },
       child: Card(
@@ -506,7 +506,7 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
           context: context,
           message: "Seleccionado: $fecha",
           icon: icon,
-          color: Colors.blue,
+          color: Color(0xFF13161c),
         );
       },
       child: Card(
@@ -559,7 +559,7 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                   child: TextButton.icon(
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.white,
-                      backgroundColor: Colors.blue,
+                      backgroundColor: Color(0xFF13161c),
                     ),
                     onPressed: () {
                       NavigatorWidget.pushWithSlideUp(

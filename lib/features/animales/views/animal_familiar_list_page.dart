@@ -45,7 +45,7 @@ class _AnimalFamiliarListPageState extends State<AnimalFamiliarListPage> {
         onPressed: () async {
           NavigatorWidget.pushWithSlideUp(context, AnimalFamiliarAddPage());
         },
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Color(0xFF13161c),
         child: const Icon(Icons.add, size: 32, color: Colors.white),
         shape: const CircleBorder(),
       ),

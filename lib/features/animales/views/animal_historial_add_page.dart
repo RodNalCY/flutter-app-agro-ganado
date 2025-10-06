@@ -95,7 +95,7 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
           'Registrar historial de animal',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Color(0xFF13161c),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: SingleChildScrollView(
@@ -246,7 +246,7 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
                 child: TextButton.icon(
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.white,
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Color(0xFF13161c),
                   ),
                   onPressed: () {
                     FlushbarWidget.show(
@@ -286,7 +286,7 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
               child: TextButton.icon(
                 style: TextButton.styleFrom(
                   foregroundColor: Colors.white,
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Color(0xFF13161c),
                 ),
                 onPressed: () {
                   // showFormBottom(context);
@@ -539,7 +539,7 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
               child: TextButton.icon(
                 style: TextButton.styleFrom(
                   foregroundColor: Colors.white,
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Color(0xFF13161c),
                 ),
                 onPressed: () {
                   // showFormBottom(context);

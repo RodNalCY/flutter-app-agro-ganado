@@ -19,7 +19,7 @@ class _AnimalHomePageState extends State<AnimalHomePage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text("Home Animal", style: TextStyle(color: Colors.white)),
-          backgroundColor: Colors.lightBlueAccent,
+          backgroundColor: Color(0xFF13161c),
           iconTheme: const IconThemeData(
             color: Colors.white, // 👈 cambia el color del back arrow
           ),

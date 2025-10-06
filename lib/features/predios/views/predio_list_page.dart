@@ -57,7 +57,7 @@ class _PredioListPageState extends State<PredioListPage> {
         onPressed: () {
           NavigatorWidget.pushWithSlideUp(context, PredioHomePage());
         },
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Color(0xFF13161c),
         child: Icon(Icons.add, size: 32, color: Colors.white),
         shape: const CircleBorder(),
       ),
@@ -71,8 +71,8 @@ class _PredioListPageState extends State<PredioListPage> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
-            height: 190,
-            width: 130,
+            height: 160,
+            width: 120,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
@@ -82,8 +82,8 @@ class _PredioListPageState extends State<PredioListPage> {
             ),
           ),
           Expanded(
-            child: Padding(
-              padding: EdgeInsets.all(8.0),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -95,13 +95,13 @@ class _PredioListPageState extends State<PredioListPage> {
                     "PRE1234567",
                     style: TextStyle(fontWeight: FontWeight.w300),
                   ),
-                  Divider(color: Colors.grey),
+                  Divider(),
                   // ROW REGISTRO HAPPY
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
-                      Icon(Icons.pets, size: 28),
+                      Icon(Icons.pets, size: 20),
                       Text("1240 animales", style: TextStyle(fontSize: 16)),
                     ],
                   ),
@@ -109,7 +109,7 @@ class _PredioListPageState extends State<PredioListPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Icon(Icons.location_on, size: 30),
+                      Icon(Icons.location_on, size: 20),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -121,15 +121,17 @@ class _PredioListPageState extends State<PredioListPage> {
                       ),
                     ],
                   ),
-                  Divider(color: Colors.grey),
+                  Divider(),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Expanded(
                         child: TextButton.icon(
                           style: TextButton.styleFrom(
-                            shape: LinearBorder(),
-                            foregroundColor: Colors.blue,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            foregroundColor: Colors.white,
+                            backgroundColor: Colors.blueAccent,
                           ),
 
                           onPressed: () {
@@ -144,17 +146,21 @@ class _PredioListPageState extends State<PredioListPage> {
                           label: const Text(
                             'Editar',
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                              // fontWeight: FontWeight.bold,
                               fontSize: 17,
                             ),
                           ),
                         ),
                       ),
+                      SizedBox(width: 5),
                       Expanded(
                         child: TextButton.icon(
                           style: TextButton.styleFrom(
-                            shape: LinearBorder(),
-                            foregroundColor: Colors.red,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            foregroundColor: Colors.white,
+                            backgroundColor: Colors.redAccent,
                           ),
                           onPressed: () {
                             FlushbarWidget.show(
@@ -168,7 +174,7 @@ class _PredioListPageState extends State<PredioListPage> {
                           label: const Text(
                             'Eliminar',
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                              // fontWeight: FontWeight.bold,
                               fontSize: 17,
                             ),
                           ),

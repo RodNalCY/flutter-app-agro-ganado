@@ -66,7 +66,7 @@ class _AnimalHistorialListPageState extends State<AnimalHistorialListPage> {
                       shape: BoxShape.circle,
                     ),
                     selectedDecoration: BoxDecoration(
-                      color: Colors.lightBlue, // color del día seleccionado
+                      color: Colors.blueGrey, // color del día seleccionado
                       shape: BoxShape.circle,
                     ),
                     selectedTextStyle: const TextStyle(
@@ -108,7 +108,7 @@ class _AnimalHistorialListPageState extends State<AnimalHistorialListPage> {
       floatingActionButton: SpeedDial(
         icon: Icons.add,
         activeIcon: Icons.close,
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Color(0xFF13161c),
         foregroundColor: Colors.white,
         iconTheme: const IconThemeData(size: 32),
 
@@ -154,7 +154,7 @@ class _AnimalHistorialListPageState extends State<AnimalHistorialListPage> {
                       Container(
                         padding: EdgeInsets.all(4.0),
                         decoration: BoxDecoration(
-                          color: Colors.blue,
+                          color: Color(0xFF13161c),
                           shape: BoxShape.rectangle,
                           borderRadius: BorderRadius.all(Radius.circular(7)),
                         ),
@@ -185,20 +185,22 @@ class _AnimalHistorialListPageState extends State<AnimalHistorialListPage> {
                   ),
                   Divider(color: Colors.grey),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Expanded(
                         child: TextButton.icon(
                           style: TextButton.styleFrom(
-                            shape: LinearBorder(),
-                            foregroundColor: Colors.blue,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            foregroundColor: Colors.white,
+                            backgroundColor: Colors.blueAccent,
                           ),
 
                           onPressed: () {
                             FlushbarWidget.show(
                               context: context,
-                              message: "Editar consulta médica",
-                              icon: Icons.edit,
+                              message: "Editar Activado",
+                              icon: Icons.info,
                               color: Colors.blue,
                             );
                           },
@@ -206,23 +208,27 @@ class _AnimalHistorialListPageState extends State<AnimalHistorialListPage> {
                           label: const Text(
                             'Editar',
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                              // fontWeight: FontWeight.bold,
                               fontSize: 17,
                             ),
                           ),
                         ),
                       ),
+                      SizedBox(width: 5),
                       Expanded(
                         child: TextButton.icon(
                           style: TextButton.styleFrom(
-                            shape: LinearBorder(),
-                            foregroundColor: Colors.red,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            foregroundColor: Colors.white,
+                            backgroundColor: Colors.redAccent,
                           ),
                           onPressed: () {
                             FlushbarWidget.show(
                               context: context,
-                              message: "Eliminar consulta médica",
-                              icon: Icons.delete,
+                              message: "Eliminar Activado",
+                              icon: Icons.info,
                               color: Colors.red,
                             );
                           },
@@ -230,7 +236,7 @@ class _AnimalHistorialListPageState extends State<AnimalHistorialListPage> {
                           label: const Text(
                             'Eliminar',
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                              // fontWeight: FontWeight.bold,
                               fontSize: 17,
                             ),
                           ),
