@@ -14,36 +14,41 @@ class _PredioPropietarioListPageState extends State<PredioPropietarioListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Container(
-          margin: EdgeInsets.all(15),
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: 10),
-              Container(
-                child: TextFormField(
-                  onTap: () {
-                    // abrir datepicker al tocar
-                  },
+      body: Column(
+        children: <Widget>[
+          Card(
+            elevation: 2,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+              child: PreferredSize(
+                preferredSize: const Size.fromHeight(60),
+                child: TextField(
                   decoration: InputDecoration(
-                    isDense: true,
-                    hint: Text("Buscar propietarios..."),
+                    hintText: "Buscar predio...",
+                    prefixIcon: Icon(Icons.search),
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    prefixIcon: Icon(Icons.search, size: 25),
+                    filled: true,
+                    fillColor: Colors.white,
                   ),
+                  onChanged: (value) {
+                    // viewModel.filterAnimals(value);
+                  },
                 ),
               ),
-              SizedBox(height: 10),
-              buildInfoProductor(context),
-              buildInfoProductor(context),
-              buildInfoProductor(context),
-              SizedBox(height: 10),
-            ],
+            ),
           ),
-        ),
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return buildInfoProductor(context);
+              },
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

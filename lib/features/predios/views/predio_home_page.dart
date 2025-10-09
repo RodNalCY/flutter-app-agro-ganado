@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:proinnovate_flutter_app/features/animales/views/animal_list_page.dart';
 import 'predio_add_page.dart';
-import 'predio_animal_list_page.dart';
 import 'predio_propietario_list_page.dart';
 
 class PredioHomePage extends StatefulWidget {
@@ -40,7 +40,7 @@ class _PredioHomePageState extends State<PredioHomePage> {
         body: TabBarView(
           children: [
             PredioAddPage(statusHeader: false),
-            PredioAnimalListPage(),
+            AnimalListPage(statusView: true),
             PredioPropietarioListPage(),
           ],
         ),

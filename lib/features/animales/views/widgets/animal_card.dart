@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proinnovate_flutter_app/features/core/widgets/actions_buttons_widget.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/flushbar_widget.dart';
 import '../../models/animal.dart';
 
@@ -77,65 +78,24 @@ class AnimalCard extends StatelessWidget {
                     ],
                   ),
                   Divider(),
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: TextButton.icon(
-                          style: TextButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            foregroundColor: Colors.white,
-                            backgroundColor: Colors.blueAccent,
-                          ),
+                  ActionsButtonsWidget(
+                    onEdit: () {
+                      FlushbarWidget.show(
+                        context: context,
+                        message: "Editar Activado: " + animal.codigo,
+                        icon: Icons.info,
+                        color: Colors.blue,
+                      );
+                    },
 
-                          onPressed: () {
-                            FlushbarWidget.show(
-                              context: context,
-                              message: "Editar Activado",
-                              icon: Icons.info,
-                              color: Colors.blue,
-                            );
-                          },
-                          icon: const Icon(Icons.edit),
-                          label: const Text(
-                            'Editar',
-                            style: TextStyle(
-                              // fontWeight: FontWeight.bold,
-                              fontSize: 17,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 5),
-                      Expanded(
-                        child: TextButton.icon(
-                          style: TextButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            foregroundColor: Colors.white,
-                            backgroundColor: Colors.redAccent,
-                          ),
-                          onPressed: () {
-                            FlushbarWidget.show(
-                              context: context,
-                              message: "Eliminar Activado",
-                              icon: Icons.info,
-                              color: Colors.red,
-                            );
-                          },
-                          icon: const Icon(Icons.delete),
-                          label: const Text(
-                            'Eliminar',
-                            style: TextStyle(
-                              // fontWeight: FontWeight.bold,
-                              fontSize: 17,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                    onDelete: () {
+                      FlushbarWidget.show(
+                        context: context,
+                        message: "Eliminar Activado: " + animal.codigo,
+                        icon: Icons.info,
+                        color: Colors.red,
+                      );
+                    },
                   ),
                 ],
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/animal_historial_add_page.dart';
+import 'package:proinnovate_flutter_app/features/core/widgets/actions_buttons_widget.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/navigator_widget.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -85,7 +86,6 @@ class _AnimalHistorialListPageState extends State<AnimalHistorialListPage> {
                       message:
                           "${selected.day}/${selected.month}/${selected.year}",
                       icon: Icons.calendar_month,
-                      color: Colors.blue,
                     );
                   },
                   // 👇 ESTA ES LA PARTE QUE TE FALTABA
@@ -184,65 +184,24 @@ class _AnimalHistorialListPageState extends State<AnimalHistorialListPage> {
                     ],
                   ),
                   Divider(color: Colors.grey),
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: TextButton.icon(
-                          style: TextButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            foregroundColor: Colors.white,
-                            backgroundColor: Colors.blueAccent,
-                          ),
+                  ActionsButtonsWidget(
+                    onEdit: () {
+                      FlushbarWidget.show(
+                        context: context,
+                        message: "Editar Activado ",
+                        icon: Icons.info,
+                        color: Colors.blue,
+                      );
+                    },
 
-                          onPressed: () {
-                            FlushbarWidget.show(
-                              context: context,
-                              message: "Editar Activado",
-                              icon: Icons.info,
-                              color: Colors.blue,
-                            );
-                          },
-                          icon: const Icon(Icons.edit),
-                          label: const Text(
-                            'Editar',
-                            style: TextStyle(
-                              // fontWeight: FontWeight.bold,
-                              fontSize: 17,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 5),
-                      Expanded(
-                        child: TextButton.icon(
-                          style: TextButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            foregroundColor: Colors.white,
-                            backgroundColor: Colors.redAccent,
-                          ),
-                          onPressed: () {
-                            FlushbarWidget.show(
-                              context: context,
-                              message: "Eliminar Activado",
-                              icon: Icons.info,
-                              color: Colors.red,
-                            );
-                          },
-                          icon: const Icon(Icons.delete),
-                          label: const Text(
-                            'Eliminar',
-                            style: TextStyle(
-                              // fontWeight: FontWeight.bold,
-                              fontSize: 17,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                    onDelete: () {
+                      FlushbarWidget.show(
+                        context: context,
+                        message: "Eliminar Activado ",
+                        icon: Icons.info,
+                        color: Colors.red,
+                      );
+                    },
                   ),
                 ],
               ),

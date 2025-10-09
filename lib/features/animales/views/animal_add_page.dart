@@ -117,7 +117,6 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                             context: context,
                             message: "Sincronizando...",
                             icon: Icons.sync,
-                            color: Color(0xFF13161c),
                           );
                         },
                         icon: const Icon(Icons.sync, size: 25),

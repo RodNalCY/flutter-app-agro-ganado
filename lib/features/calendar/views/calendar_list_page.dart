@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:proinnovate_flutter_app/features/core/widgets/actions_buttons_widget.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/flushbar_widget.dart';
 
@@ -10,44 +12,64 @@ class CalendarListPage extends StatefulWidget {
 }
 
 class _CalendarListPageState extends State<CalendarListPage> {
+  late ScrollController _scrollController;
+  bool _isCalendarVisible = true;
+
+  CalendarFormat calendarFormat = CalendarFormat.month;
   DateTime focusedDay = DateTime.now();
   DateTime? selectedDay;
-  CalendarFormat calendarFormat = CalendarFormat.month; // formato por defecto
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+
+    _scrollController.addListener(() {
+      // Detecta dirección del scroll
+      if (_scrollController.position.userScrollDirection ==
+          ScrollDirection.reverse) {
+        if (_isCalendarVisible) setState(() => _isCalendarVisible = false);
+      } else if (_scrollController.position.userScrollDirection ==
+          ScrollDirection.forward) {
+        if (!_isCalendarVisible) setState(() => _isCalendarVisible = true);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(
-      //     "Calendario",
-      //     style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-      //   ),
-      //   backgroundColor: Colors.lightBlueAccent,
-      // ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Container(
-          child: Column(
-            children: <Widget>[
-              Card(
+      // appBar: AppBar(title: const Text("Calendario Animado")),
+      body: Column(
+        children: [
+          // 👇 Calendario con animación
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+            height: _isCalendarVisible ? 350 : 0, // 👈 Controla el alto
+            child: SingleChildScrollView(
+              child: Card(
                 elevation: 4,
                 child: TableCalendar(
+                  headerStyle: HeaderStyle(formatButtonVisible: false),
                   firstDay: DateTime.utc(2000, 1, 1),
                   lastDay: DateTime.utc(2026, 12, 31),
                   focusedDay: focusedDay,
-                  locale: 'es_ES', // 👈 idioma español
+                  locale: 'es_ES',
                   selectedDayPredicate: (day) => isSameDay(selectedDay, day),
-                  // headerStyle: const HeaderStyle(
-                  //   formatButtonVisible: false, // 👈 oculta el botón "2 weeks"
-                  // ),
-                  // 👇 Aquí personalizamos colores
                   calendarStyle: CalendarStyle(
                     todayDecoration: BoxDecoration(
-                      color: Colors.black, // color del día de hoy
+                      color: Colors.black,
                       shape: BoxShape.circle,
                     ),
                     selectedDecoration: BoxDecoration(
-                      color: Colors.blueGrey, // color del día seleccionado
+                      color: Colors.blueGrey,
                       shape: BoxShape.circle,
                     ),
                     selectedTextStyle: const TextStyle(
@@ -60,16 +82,9 @@ class _CalendarListPageState extends State<CalendarListPage> {
                     setState(() {
                       selectedDay = selected;
                       focusedDay = focused;
-                    }); // 👉 Mostrar alerta
-                    FlushbarWidget.show(
-                      context: context,
-                      message:
-                          "${selected.day}/${selected.month}/${selected.year}",
-                      icon: Icons.calendar_month,
-                      color: Colors.blue,
-                    );
+                    });
+                    // Ejemplo: FlushbarWidget.show(...);
                   },
-                  // 👇 ESTA ES LA PARTE QUE TE FALTABA
                   calendarFormat: calendarFormat,
                   onFormatChanged: (format) {
                     setState(() {
@@ -78,40 +93,49 @@ class _CalendarListPageState extends State<CalendarListPage> {
                   },
                 ),
               ),
-              SizedBox(height: 10),
-              Card(
-                elevation: 2,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 5,
-                    vertical: 10,
-                  ),
-                  child: PreferredSize(
-                    preferredSize: const Size.fromHeight(60),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: "Buscar...",
-                        prefixIcon: Icon(Icons.search),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        filled: true,
-                        fillColor: Colors.white,
-                      ),
-                      onChanged: (value) {
-                        // viewModel.filterAnimals(value);
-                      },
+            ),
+          ),
+
+          const SizedBox(height: 10),
+
+          // 👇 Buscador
+          Card(
+            elevation: 2,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+              child: SizedBox(
+                height: 60,
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: "Buscar...",
+                    prefixIcon: const Icon(Icons.search),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
+                    filled: true,
+                    fillColor: Colors.white,
                   ),
+                  onChanged: (value) {
+                    // viewModel.filterAnimals(value);
+                  },
                 ),
               ),
-              SizedBox(height: 10),
-              buildCardList(context),
-              buildCardList(context),
-              buildCardList(context),
-            ],
+            ),
           ),
-        ),
+
+          const SizedBox(height: 10),
+
+          // 👇 Lista con Scroll que controla la animación
+          Expanded(
+            child: ListView.builder(
+              controller: _scrollController,
+              itemCount: 20,
+              itemBuilder: (context, index) {
+                return buildCardList(context);
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -164,65 +188,24 @@ class _CalendarListPageState extends State<CalendarListPage> {
                     ],
                   ),
                   Divider(),
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: TextButton.icon(
-                          style: TextButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            foregroundColor: Colors.white,
-                            backgroundColor: Colors.blueAccent,
-                          ),
+                  ActionsButtonsWidget(
+                    onEdit: () {
+                      FlushbarWidget.show(
+                        context: context,
+                        message: "Editar Activado",
+                        icon: Icons.info,
+                        color: Colors.blue,
+                      );
+                    },
 
-                          onPressed: () {
-                            FlushbarWidget.show(
-                              context: context,
-                              message: "Editar Activado",
-                              icon: Icons.info,
-                              color: Colors.blue,
-                            );
-                          },
-                          icon: const Icon(Icons.edit),
-                          label: const Text(
-                            'Editar',
-                            style: TextStyle(
-                              // fontWeight: FontWeight.bold,
-                              fontSize: 17,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 5),
-                      Expanded(
-                        child: TextButton.icon(
-                          style: TextButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            foregroundColor: Colors.white,
-                            backgroundColor: Colors.redAccent,
-                          ),
-                          onPressed: () {
-                            FlushbarWidget.show(
-                              context: context,
-                              message: "Eliminar Activado",
-                              icon: Icons.info,
-                              color: Colors.red,
-                            );
-                          },
-                          icon: const Icon(Icons.delete),
-                          label: const Text(
-                            'Eliminar',
-                            style: TextStyle(
-                              // fontWeight: FontWeight.bold,
-                              fontSize: 17,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                    onDelete: () {
+                      FlushbarWidget.show(
+                        context: context,
+                        message: "Eliminar Activado",
+                        icon: Icons.info,
+                        color: Colors.red,
+                      );
+                    },
                   ),
                 ],
               ),

@@ -739,7 +739,6 @@ class _PredioPropietarioAddPageState extends State<PredioPropietarioAddPage> {
                       context: context,
                       message: "Propietario guardado con éxito",
                       icon: Icons.save,
-                      color: Colors.blue,
                     );
                   },
                   icon: const Icon(Icons.add, size: 25),

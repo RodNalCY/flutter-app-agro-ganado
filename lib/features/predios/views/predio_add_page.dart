@@ -20,7 +20,7 @@ class _PredioAddPageState extends State<PredioAddPage> {
                 "Agregar Predio",
                 style: TextStyle(color: Colors.white),
               ),
-              backgroundColor: Colors.lightBlueAccent,
+              backgroundColor: Color(0xFF13161c),
               iconTheme: IconThemeData(color: Colors.white),
             )
           : null,
@@ -590,7 +590,6 @@ class _PredioAddPageState extends State<PredioAddPage> {
                       context: context,
                       message: "Predio guardado con éxito",
                       icon: Icons.save,
-                      color: Colors.blue,
                     );
                   },
                   icon: const Icon(Icons.add, size: 25),

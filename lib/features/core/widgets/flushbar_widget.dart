@@ -6,7 +6,7 @@ class FlushbarWidget {
     required BuildContext context,
     required String message,
     required IconData icon,
-    required Color color,
+    Color color = Colors.white,
   }) {
     Flushbar(
       message: message,

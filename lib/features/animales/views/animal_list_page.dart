@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/animal_home_page.dart';
+import 'package:proinnovate_flutter_app/features/animales/views/animal_add_page.dart';
 // import 'package:proinnovate_flutter_app/features/core/widgets/flushbar_widget.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/navigator_widget.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +10,8 @@ import '../viewmodels/animal_view_model.dart';
 import 'widgets/animal_card.dart';
 
 class AnimalListPage extends StatelessWidget {
-  const AnimalListPage({Key? key}) : super(key: key);
+  final bool statusView;
+  const AnimalListPage({Key? key, this.statusView = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,19 @@ class AnimalListPage extends StatelessWidget {
             //   icon: Icons.info_outline,
             //   color: Colors.blue,
             // );
-            NavigatorWidget.pushWithSlideUp(context, AnimalHomePage());
+            // NavigatorWidget.pushWithSlideUp(context, AnimalHomePage());
+            print("Option statusView: $statusView");
+            switch (statusView) {
+              case true:
+                NavigatorWidget.pushWithSlideUp(
+                  context,
+                  AnimalAddPage(statusHeader: true),
+                );
+                break;
+              case false:
+                NavigatorWidget.pushWithSlideUp(context, AnimalHomePage());
+                break;
+            }
           },
           backgroundColor: Color(0xFF13161c),
           child: const Icon(Icons.add, size: 32, color: Colors.white),
