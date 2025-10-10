@@ -5,6 +5,7 @@ import 'package:proinnovate_flutter_app/features/core/widgets/navigator_widget.d
 import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/flushbar_widget.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class AnimalHistorialListPage extends StatefulWidget {
   const AnimalHistorialListPage({Key? key}) : super(key: key);
@@ -118,7 +119,22 @@ class _AnimalHistorialListPageState extends State<AnimalHistorialListPage> {
             shape: const CircleBorder(),
             child: const Icon(Icons.calendar_month),
             label: 'Generar',
-            onTap: () {},
+            onTap: () async {
+              // FlushbarWidget.show(
+              //   context: context,
+              //   message: "Se generó el historial con éxito",
+              //   icon: Icons.calendar_month,
+              // );
+              // String getValueRadio = "";
+              // final result = await buildDialogSync(context);
+              await buildDialogSync(context);
+
+              // Espera 5 segundos y luego cierra el diálogo si sigue activo
+              // await Future.delayed(const Duration(seconds: 5));
+              // if (context.mounted) {
+              //   Navigator.of(context, rootNavigator: true).pop();
+              // }
+            },
           ),
           SpeedDialChild(
             shape: const CircleBorder(),
@@ -211,135 +227,81 @@ class _AnimalHistorialListPageState extends State<AnimalHistorialListPage> {
       ),
     );
   }
-  // Widget buildCardList() {
-  //   return Card(
-  //     elevation: 4,
-  //     child: Row(
-  //       mainAxisAlignment: MainAxisAlignment.start,
-  //       children: <Widget>[
-  //         Container(
-  //           height: 200,
-  //           width: 120,
-  //           child: ClipRRect(
-  //             borderRadius: BorderRadius.circular(10),
-  //             child: Image.network(
-  //               "https://img.freepik.com/fotos-premium/cuidado-vacas-veterinarios-mano-sostiene-jeringa-medicamentos-tratamiento-redes-sociales-post-size_896558-62360.jpg",
-  //               fit: BoxFit.cover,
-  //             ),
-  //           ),
-  //         ),
-  //         Expanded(
-  //           child: Padding(
-  //             padding: EdgeInsets.all(8.0),
-  //             child: Column(
-  //               crossAxisAlignment: CrossAxisAlignment.start,
-  //               children: <Widget>[
-  //                 Text(
-  //                   "Vacuna aplicada",
-  //                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-  //                 ),
-  //                 Text(
-  //                   "10/09/2025",
-  //                   style: TextStyle(fontWeight: FontWeight.w300),
-  //                 ),
-  //                 Divider(color: Colors.grey),
-  //                 // ROW REGISTRO HAPPY
-  //                 Row(
-  //                   mainAxisAlignment: MainAxisAlignment.start,
-  //                   crossAxisAlignment: CrossAxisAlignment.end,
-  //                   children: <Widget>[
-  //                     Text(
-  //                       "Tipo:",
-  //                       style: TextStyle(
-  //                         fontSize: 16,
-  //                         fontWeight: FontWeight.bold,
-  //                       ),
-  //                     ),
-  //                     Text(
-  //                       "Vacuna para ántrax",
-  //                       style: TextStyle(fontSize: 16),
-  //                     ),
-  //                   ],
-  //                 ),
-  //                 // ROW ENFERMEDAD
-  //                 Row(
-  //                   mainAxisAlignment: MainAxisAlignment.start,
-  //                   children: <Widget>[
-  //                     Text(
-  //                       "Lote:",
-  //                       style: TextStyle(
-  //                         fontSize: 16,
-  //                         fontWeight: FontWeight.bold,
-  //                       ),
-  //                     ),
-  //                     Text("ABC1234", style: TextStyle(fontSize: 16)),
-  //                   ],
-  //                 ),
-  //                 //ROW LOTE
-  //                 Row(
-  //                   mainAxisAlignment: MainAxisAlignment.start,
-  //                   children: <Widget>[
-  //                     Text(
-  //                       "Marca:",
-  //                       style: TextStyle(
-  //                         fontSize: 16,
-  //                         fontWeight: FontWeight.bold,
-  //                       ),
-  //                     ),
-  //                     Text("Pfizer", style: TextStyle(fontSize: 16)),
-  //                   ],
-  //                 ),
-  //                 Divider(color: Colors.grey),
-  //                 Row(
-  //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                   children: <Widget>[
-  //                     Expanded(
-  //                       child: TextButton.icon(
-  //                         style: TextButton.styleFrom(
-  //                           shape: LinearBorder(),
-  //                           foregroundColor: Colors.blue,
-  //                         ),
 
-  //                         onPressed: () {
-  //                           // snackbarEditar();
-  //                         },
-  //                         icon: const Icon(Icons.edit),
-  //                         label: const Text(
-  //                           'Editar',
-  //                           style: TextStyle(
-  //                             fontWeight: FontWeight.bold,
-  //                             fontSize: 17,
-  //                           ),
-  //                         ),
-  //                       ),
-  //                     ),
-  //                     Expanded(
-  //                       child: TextButton.icon(
-  //                         style: TextButton.styleFrom(
-  //                           shape: LinearBorder(),
-  //                           foregroundColor: Colors.red,
-  //                         ),
-  //                         onPressed: () {
-  //                           // snackbarEliminar();
-  //                         },
-  //                         icon: const Icon(Icons.delete),
-  //                         label: const Text(
-  //                           'Eliminar',
-  //                           style: TextStyle(
-  //                             fontWeight: FontWeight.bold,
-  //                             fontSize: 17,
-  //                           ),
-  //                         ),
-  //                       ),
-  //                     ),
-  //                   ],
-  //                 ),
-  //               ],
-  //             ),
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
+  Future<String?> buildDialogSync(BuildContext context) {
+    return showDialog<String>(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        // Cierra automáticamente tras 5 segundos
+        Future.delayed(const Duration(seconds: 5), () {
+          if (context.mounted) {
+            Navigator.of(context, rootNavigator: true).pop();
+          }
+        });
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              // title: const Text(
+              //   'Sincronizar un dispositivo',
+              //   style: TextStyle(fontSize: 20),
+              // ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Center(
+                    child: Text(
+                      "Generando calendario de vacunación para el animal. Por favor espere...",
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  SizedBox(height: 25.0),
+                  Center(
+                    child: Stack(
+                      children: [
+                        LoadingAnimationWidget.threeArchedCircle(
+                          color: Color(0xFF13161c),
+                          size: 55,
+                        ),
+                        Positioned(
+                          bottom: 10,
+                          right: 10,
+                          child: InkWell(
+                            onTap: null, // deshabilita si está ocupado
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                color: Colors.black,
+                                shape: BoxShape.circle,
+                              ),
+                              padding: const EdgeInsets.all(6),
+                              child: const Icon(
+                                Icons.calendar_month,
+                                color: Colors.white,
+                                size: 22,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 25.0),
+                ],
+              ),
+              // actions: [
+              //   TextButton(
+              //     style: TextButton.styleFrom(foregroundColor: Colors.black54),
+              //     onPressed: () => Navigator.of(context).pop(null),
+              //     child: const Text('Cancelar'),
+              //   ),
+              // ],
+            );
+          },
+        );
+      },
+    );
+  }
 }

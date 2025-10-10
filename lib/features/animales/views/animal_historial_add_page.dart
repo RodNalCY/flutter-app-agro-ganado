@@ -29,7 +29,9 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
     }
   }
 
-  bool isChecked = false;
+  bool isCheckedOne = false;
+  bool isCheckedTwo = false;
+  bool isCheckedThree = false;
 
   // Lista base
   List<String> optionsTipo = [
@@ -38,32 +40,6 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
     "Vacunación",
     "Producción",
   ];
-  // Widget? selectedWidgetTipo;
-
-  // void onItemSelectedTipo(int index, BuildContext context) {
-  //   Widget selected;
-
-  //   switch (index) {
-  //     case 0:
-  //       selected = buildCheckboxEnfermedad();
-  //       break;
-  //     case 1:
-  //       selected = buildSelectPredio(context);
-  //       break;
-  //     case 2:
-  //       selected = buildInputTipoVacuna();
-  //       break;
-  //     case 3:
-  //       selected = buildSelectDestino(context);
-  //       break;
-  //     default:
-  //       selected = Container(); // opcional por seguridad
-  //   }
-
-  //   setState(() {
-  //     selectedWidgetTipo = selected;
-  //   });
-  // }
 
   int? selectedTipoIndex;
   void onItemSelectedTipo(int index, BuildContext context) {
@@ -210,6 +186,7 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
                   Text("*", style: TextStyle(fontSize: 18, color: Colors.red)),
                 ],
               ),
+
               Container(
                 child: TextFormField(
                   readOnly: true,
@@ -224,21 +201,7 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
                 ),
               ),
               SizedBox(height: 10),
-              // Column(
-              //   children: [
-              //     if (selectedWidgetTipo != null) selectedWidgetTipo!,
-              //     buildCheckboxEnfermedad(),
-              //   ],
-              // ),
-              // Aquí se muestra el widget seleccionado
-              // if (selectedWidgetTipo != null) selectedWidgetTipo!,
-              // SizedBox(height: 10),
-              // buildCheckboxEnfermedad(),
-              // SizedBox(height: 10),
-              // buildSelectPredio(context),
-              // SizedBox(height: 10),
-              // buildSelectDestino(context),
-              // buildInputTipoVacuna(),
+
               buildSelectedTipo(context),
               SizedBox(height: 10),
               Container(
@@ -266,6 +229,7 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
                   ),
                 ),
               ),
+
               SizedBox(height: 20),
             ],
           ),
@@ -277,6 +241,66 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
   Widget buildCheckboxEnfermedad() {
     return Column(
       children: [
+        Row(
+          children: [
+            Expanded(
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Text("Peso (kg)", style: TextStyle(fontSize: 17)),
+                      Text(
+                        "*",
+                        style: TextStyle(fontSize: 18, color: Colors.red),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        isDense: true,
+                        hintText: "Ingrese el Peso",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Text("Talla (cm)", style: TextStyle(fontSize: 17)),
+                      Text(
+                        "*",
+                        style: TextStyle(fontSize: 18, color: Colors.red),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        isDense: true,
+                        hintText: "Ingrese el Talla",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 10),
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -325,10 +349,33 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Checkbox(
-                  value: isChecked,
+                  value: isCheckedOne,
                   onChanged: (bool? newValue) {
                     setState(() {
-                      isChecked = newValue!;
+                      isCheckedOne = newValue!;
+                    });
+                  },
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [const Text('Tuberculosis'), const Text('ABC345')],
+                ),
+              ],
+            ),
+          ),
+        ),
+        Card(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Checkbox(
+                  value: isCheckedTwo,
+                  onChanged: (bool? newValue) {
+                    setState(() {
+                      isCheckedTwo = newValue!;
                     });
                   },
                 ),
@@ -338,6 +385,29 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
                     const Text('Diarrea viral bovina (DVB)'),
                     const Text('ABC345'),
                   ],
+                ),
+              ],
+            ),
+          ),
+        ),
+        Card(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Checkbox(
+                  value: isCheckedThree,
+                  onChanged: (bool? newValue) {
+                    setState(() {
+                      isCheckedThree = newValue!;
+                    });
+                  },
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [const Text('Mastitis'), const Text('ABC345')],
                 ),
               ],
             ),
@@ -376,7 +446,7 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
           onTap: () {
             FlushbarWidget.show(
               context: context,
-              message: "Predio Seleccionado",
+              message: "Predio Seleccionado 1",
               icon: Icons.info_outline,
               color: Colors.blue,
             );
@@ -394,6 +464,86 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
                       children: [
                         Text(
                           "PREDIO 1",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Text(
+                          "PRE1234567",
+                          style: TextStyle(fontWeight: FontWeight.w300),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        GestureDetector(
+          onTap: () {
+            FlushbarWidget.show(
+              context: context,
+              message: "Predio Seleccionado 2",
+              icon: Icons.info_outline,
+              color: Colors.blue,
+            );
+          },
+          child: Card(
+            elevation: 5,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 25, top: 10, bottom: 10),
+              child: Row(
+                children: <Widget>[
+                  // Icon(Icons.apartment, size: 45),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "PREDIO 2",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Text(
+                          "PRE1234567",
+                          style: TextStyle(fontWeight: FontWeight.w300),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        GestureDetector(
+          onTap: () {
+            FlushbarWidget.show(
+              context: context,
+              message: "Predio Seleccionado 3",
+              icon: Icons.info_outline,
+              color: Colors.blue,
+            );
+          },
+          child: Card(
+            elevation: 5,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 25, top: 10, bottom: 10),
+              child: Row(
+                children: <Widget>[
+                  // Icon(Icons.apartment, size: 45),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "PREDIO 3",
                           style: TextStyle(fontWeight: FontWeight.bold),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -501,6 +651,7 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
               ),
             ),
             SizedBox(width: 10),
+
             Expanded(
               child: Column(
                 children: [
@@ -528,6 +679,40 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
               ),
             ),
           ],
+        ),
+        SizedBox(height: 10),
+        Row(
+          children: [
+            Text("Tipo de venta", style: TextStyle(fontSize: 17)),
+            Text("*", style: TextStyle(fontSize: 18, color: Colors.red)),
+          ],
+        ),
+        Container(
+          child: DropdownSearch<String>(
+            items: (filter, infiniteScrollProps) => [
+              "Nacional",
+              "Internacional",
+            ],
+            dropdownBuilder: (context, selectedItem) {
+              return Text(
+                selectedItem ?? "Seleccione",
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              );
+            },
+            decoratorProps: DropDownDecoratorProps(
+              decoration: InputDecoration(
+                isDense: true,
+                // isCollapsed: true,
+                // hintText: "Seleccione",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+            ),
+
+            popupProps: PopupProps.menu(fit: FlexFit.loose),
+          ),
         ),
         SizedBox(height: 10),
         Row(
@@ -574,7 +759,7 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
           onTap: () {
             FlushbarWidget.show(
               context: context,
-              message: "Predio Seleccionado",
+              message: "Predio Seleccionado GLORIA S.A. 01",
               icon: Icons.info_outline,
               color: Colors.blue,
             );
@@ -591,7 +776,87 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "GLORIA S.A.",
+                          "GLORIA S.A. 01",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Text(
+                          "RUC 20123456789",
+                          style: TextStyle(fontWeight: FontWeight.w300),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        GestureDetector(
+          onTap: () {
+            FlushbarWidget.show(
+              context: context,
+              message: "Predio Seleccionado GLORIA S.A. 02",
+              icon: Icons.info_outline,
+              color: Colors.blue,
+            );
+          },
+          child: Card(
+            elevation: 5,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 25, top: 10, bottom: 10),
+              child: Row(
+                children: <Widget>[
+                  // Icon(Icons.apartment, size: 45),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "GLORIA S.A. 02",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Text(
+                          "RUC 20123456789",
+                          style: TextStyle(fontWeight: FontWeight.w300),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        GestureDetector(
+          onTap: () {
+            FlushbarWidget.show(
+              context: context,
+              message: "Predio Seleccionado GLORIA S.A. 03",
+              icon: Icons.info_outline,
+              color: Colors.blue,
+            );
+          },
+          child: Card(
+            elevation: 5,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 25, top: 10, bottom: 10),
+              child: Row(
+                children: <Widget>[
+                  // Icon(Icons.apartment, size: 45),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "GLORIA S.A. 03",
                           style: TextStyle(fontWeight: FontWeight.bold),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,

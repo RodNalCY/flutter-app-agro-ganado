@@ -112,12 +112,12 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                           foregroundColor: Colors.white,
                           backgroundColor: Color(0xFF13161c),
                         ),
-                        onPressed: () {
-                          FlushbarWidget.show(
-                            context: context,
-                            message: "Sincronizando...",
-                            icon: Icons.sync,
-                          );
+                        onPressed: () async {
+                          // await buildDialogSync(context);
+                          String getValueRadio = "";
+                          final result = await buildDialogSync(context);
+                          if (result != null) getValueRadio = result;
+                          print("getValueRadio: ${getValueRadio}");
                         },
                         icon: const Icon(Icons.sync, size: 25),
                         label: const Text(
@@ -490,6 +490,85 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
           ),
         ),
       ),
+    );
+  }
+
+  Future<String?> buildDialogSync(BuildContext context) {
+    return showDialog<String>(
+      context: context,
+      builder: (context) {
+        String selectedRadioValue = "A";
+
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              title: const Text(
+                'Sincronizar un dispositivo',
+                style: TextStyle(fontSize: 20),
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  RadioGroup<String>(
+                    groupValue:
+                        selectedRadioValue, // State variable holding the selected value
+                    onChanged: (String? newValue) {
+                      setStateDialog(() {
+                        selectedRadioValue =
+                            newValue!; // Update the state when a new option is selected
+                      });
+                    },
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: [
+                            Radio<String>(value: "A"),
+                            Text("Dispositivo A"),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Radio<String>(value: "B"),
+                            Text("Dispositivo B"),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Radio<String>(value: "C"),
+                            Text("Dispositivo C"),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  // Text('Seleccionado: $selectedRadioValue'),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  style: TextButton.styleFrom(foregroundColor: Colors.black54),
+                  onPressed: () => Navigator.of(context).pop(null),
+                  child: const Text('Cancelar'),
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: Color(0xFF13161c),
+                    foregroundColor: Colors.white,
+                  ),
+                  onPressed: () =>
+                      Navigator.of(context).pop(selectedRadioValue),
+                  child: const Text('Aceptar'),
+                ),
+              ],
+            );
+          },
+        );
+      },
     );
   }
 
