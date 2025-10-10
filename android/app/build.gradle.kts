@@ -30,11 +30,16 @@ android {
     }
 
     defaultConfig {
+        // Identificador único del paquete de la app (debe ser único en Google Play)
         applicationId = "pe.contentmedia.ganadobovino.android"
+        // Versión mínima de Android que soporta la app
         minSdk = flutter.minSdkVersion
+        // Versión objetivo de Android con la que se ha probado la app
         targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+        // Número interno de versión (incrementa en cada actualización que subas a Play Store)
+        versionCode = 2
+        // Versión visible al usuario (lo que aparece en Play Store)
+        versionName = "1.1.0"
     }
 
     // Configuración de firma para release
