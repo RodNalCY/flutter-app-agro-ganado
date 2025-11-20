@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/animal_list_page.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/navigator_widget.dart';
+import 'package:proinnovate_flutter_app/features/noticias/views/news_page.dart';
 // import 'package:proinnovate_flutter_app/features/medicals/views/medical_page.dart';
 import 'package:proinnovate_flutter_app/features/predios/views/predio_list_page.dart';
 import 'package:proinnovate_flutter_app/features/settings/views/setting_page.dart';
@@ -19,6 +20,7 @@ class _HomePage extends State<HomePage> {
     AnimalListPage(),
     PredioListPage(),
     CalendarListPage(),
+    NewsPage(),
     // AnimalAddPage(),
     // MedicalPage(),
     // SettingPage(),
@@ -169,6 +171,14 @@ class _HomePage extends State<HomePage> {
                     onTapTapped(2);
                   },
                 ),
+                ListTile(
+                  leading: const Icon(Icons.article),
+                  title: const Text("Noticias"),
+                  onTap: () {
+                    Navigator.pop(context);
+                    onTapTapped(3);
+                  },
+                ),
               ],
               // 👇 Esto elimina la línea gris de arriba y abajo
               shape: const Border(),
@@ -252,6 +262,10 @@ class _HomePage extends State<HomePage> {
             BottomNavigationBarItem(
               icon: Icon(Icons.calendar_month),
               label: "Calendario",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.article),
+              label: "Noticias",
             ),
           ],
         ),
