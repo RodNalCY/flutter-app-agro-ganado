@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:proinnovate_flutter_app/features/animales/views/animal_list_page.dart';
-import 'package:proinnovate_flutter_app/features/productividad/views/producto_list_page.dart';
-import 'predio_add_page.dart';
-import 'predio_propietario_list_page.dart';
+import 'package:proinnovate_flutter_app/features/productividad/views/producto_general_page.dart';
+import 'package:proinnovate_flutter_app/features/productividad/views/producto_historial_page.dart';
+import 'package:proinnovate_flutter_app/features/productividad/views/producto_mapa_page.dart';
 
-class PredioHomePage extends StatefulWidget {
-  const PredioHomePage({Key? key}) : super(key: key);
+class ProductoHomePage extends StatefulWidget {
+  const ProductoHomePage({Key? key}) : super(key: key);
 
   @override
-  _PredioHomePageState createState() => _PredioHomePageState();
+  _ProductoHomePageState createState() => _ProductoHomePageState();
 }
 
-class _PredioHomePageState extends State<PredioHomePage> {
+class _ProductoHomePageState extends State<ProductoHomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            "Home Predio",
+            "Home Producto",
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
           backgroundColor: Color(0xFF13161c),
@@ -32,19 +31,17 @@ class _PredioHomePageState extends State<PredioHomePage> {
             unselectedLabelColor: Colors.white,
             tabs: [
               Tab(icon: Icon(Icons.assignment), text: 'General'),
-              Tab(icon: Icon(Icons.pets), text: 'Animales'),
-              Tab(icon: Icon(Icons.shopping_cart), text: 'Productos'),
-              Tab(icon: Icon(Icons.person), text: 'Propietarios'),
+              Tab(icon: Icon(Icons.calendar_today), text: 'Historial'),
+              Tab(icon: Icon(Icons.south_america), text: 'Mapa'),
             ],
           ),
         ),
         // body: Center(child: Text("Agregar Predio")),
         body: TabBarView(
           children: [
-            PredioAddPage(statusHeader: false),
-            AnimalListPage(statusView: true),
-            ProductoListPage(),
-            PredioPropietarioListPage(),
+            ProductoGeneralPage(),
+            ProductoHistorialPage(),
+            ProductoMapaPage(),
           ],
         ),
       ),
