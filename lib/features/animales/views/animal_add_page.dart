@@ -437,6 +437,33 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                   ),
                 ),
               ),
+              SizedBox(height: 20),
+              // BUTTON AGREGAR NUEVO PREDIO
+              Container(
+                width: MediaQuery.of(context).size.width,
+                child: TextButton.icon(
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Color(0xFF13161c),
+                  ),
+                  onPressed: () {
+                    FlushbarWidget.show(
+                      context: context,
+                      message: "Animal guardado correctamente",
+                      icon: Icons.check_circle,
+                    );
+                  },
+                  icon: const Icon(Icons.add, size: 25),
+                  label: Container(
+                    padding: EdgeInsets.only(right: 10),
+                    child: const Text(
+                      'Guardar Animal',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
             ],
           ),
         ),
@@ -451,7 +478,6 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
           context: context,
           message: "Predio seleccionado con exito",
           icon: Icons.check_circle,
-          color: Color(0xFF13161c),
         );
       },
       child: Card(

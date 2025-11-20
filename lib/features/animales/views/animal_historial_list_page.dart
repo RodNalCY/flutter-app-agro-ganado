@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/animal_historial_add_page.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/actions_buttons_widget.dart';
+import 'package:proinnovate_flutter_app/features/core/widgets/actions_delete_widget.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/navigator_widget.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -204,18 +205,18 @@ class _AnimalHistorialListPageState extends State<AnimalHistorialListPage> {
                     onEdit: () {
                       FlushbarWidget.show(
                         context: context,
-                        message: "Editar Activado ",
+                        message: "Editar (en desarrollo) ",
                         icon: Icons.info,
-                        color: Colors.blue,
                       );
                     },
 
                     onDelete: () {
-                      FlushbarWidget.show(
+                      ActionsDeleteWidget.show(
                         context: context,
-                        message: "Eliminar Activado ",
-                        icon: Icons.info,
-                        color: Colors.red,
+                        deleteLabel: '¿Deseas eliminar el registro?',
+                        onDelete: () {
+                          // Acción al eliminar
+                        },
                       );
                     },
                   ),

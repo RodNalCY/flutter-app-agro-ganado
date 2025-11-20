@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/actions_buttons_widget.dart';
+import 'package:proinnovate_flutter_app/features/core/widgets/actions_delete_widget.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/flushbar_widget.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/navigator_widget.dart';
 import 'predio_home_page.dart';
@@ -124,18 +125,19 @@ class _PredioListPageState extends State<PredioListPage> {
                     onEdit: () {
                       FlushbarWidget.show(
                         context: context,
-                        message: "Editar Activado",
+                        message: "Editar predio (en desarrollo)",
                         icon: Icons.info,
                         color: Colors.blue,
                       );
                     },
 
                     onDelete: () {
-                      FlushbarWidget.show(
+                      ActionsDeleteWidget.show(
                         context: context,
-                        message: "Eliminar Activado",
-                        icon: Icons.info,
-                        color: Colors.red,
+                        deleteLabel: '¿Deseas eliminar el predio?',
+                        onDelete: () {
+                          // Acción al eliminar
+                        },
                       );
                     },
                   ),

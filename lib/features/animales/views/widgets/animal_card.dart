@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/actions_buttons_widget.dart';
+import 'package:proinnovate_flutter_app/features/core/widgets/actions_delete_widget.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/flushbar_widget.dart';
 import '../../models/animal.dart';
 
@@ -91,18 +92,21 @@ class AnimalCard extends StatelessWidget {
                     onEdit: () {
                       FlushbarWidget.show(
                         context: context,
-                        message: "Editar Activado: " + animal.codigo,
+                        message:
+                            "Editar: " + animal.codigo + " (en desarrollo)",
                         icon: Icons.info,
                         color: Colors.blue,
                       );
                     },
 
                     onDelete: () {
-                      FlushbarWidget.show(
+                      ActionsDeleteWidget.show(
                         context: context,
-                        message: "Eliminar Activado: " + animal.codigo,
-                        icon: Icons.info,
-                        color: Colors.red,
+                        deleteLabel:
+                            '¿Deseas eliminar el animal ${animal.codigo}?',
+                        onDelete: () {
+                          // Acción al eliminar
+                        },
                       );
                     },
                   ),
