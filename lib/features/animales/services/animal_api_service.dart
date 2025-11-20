@@ -11,7 +11,6 @@ class AnimalApiService {
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       final List<dynamic> animalList = data['data'];
-
       return animalList.map((json) => Animal.fromJson(json)).toList();
     } else {
       throw Exception("Error ${response.statusCode} al cargar animales");
