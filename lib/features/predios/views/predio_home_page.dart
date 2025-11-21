@@ -43,7 +43,7 @@ class _PredioHomePageState extends State<PredioHomePage> {
           children: [
             PredioAddPage(statusHeader: false),
             AnimalListPage(statusView: true),
-            ProductoListPage(),
+            ProductoListPage(isPredio: true, isGanado: false),
             PredioPropietarioListPage(),
           ],
         ),

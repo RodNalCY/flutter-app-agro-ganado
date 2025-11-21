@@ -4,7 +4,14 @@ import 'package:proinnovate_flutter_app/features/productividad/views/producto_hi
 import 'package:proinnovate_flutter_app/features/productividad/views/producto_mapa_page.dart';
 
 class ProductoHomePage extends StatefulWidget {
-  const ProductoHomePage({Key? key}) : super(key: key);
+  final bool isPredio;
+  final bool isGanado;
+
+  const ProductoHomePage({
+    required this.isPredio,
+    required this.isGanado,
+    Key? key,
+  }) : super(key: key);
 
   @override
   _ProductoHomePageState createState() => _ProductoHomePageState();
@@ -39,7 +46,10 @@ class _ProductoHomePageState extends State<ProductoHomePage> {
         // body: Center(child: Text("Agregar Predio")),
         body: TabBarView(
           children: [
-            ProductoGeneralPage(),
+            ProductoGeneralPage(
+              isGanado: widget.isGanado,
+              isPredio: widget.isPredio,
+            ),
             ProductoHistorialPage(),
             ProductoMapaPage(),
           ],

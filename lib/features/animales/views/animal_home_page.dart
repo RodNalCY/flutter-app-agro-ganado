@@ -41,7 +41,7 @@ class _AnimalHomePageState extends State<AnimalHomePage> {
         body: TabBarView(
           children: [
             AnimalAddPage(statusHeader: false),
-            ProductoListPage(),
+            ProductoListPage(isPredio: true, isGanado: true),
             AnimalFamiliarListPage(),
             AnimalHistorialListPage(),
             // AnimalCalendarioListPage(),

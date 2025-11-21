@@ -3,7 +3,13 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/flushbar_widget.dart';
 
 class ProductoGeneralPage extends StatefulWidget {
-  const ProductoGeneralPage({Key? key}) : super(key: key);
+  final bool isPredio;
+  final bool isGanado;
+  const ProductoGeneralPage({
+    required this.isPredio,
+    required this.isGanado,
+    Key? key,
+  }) : super(key: key);
 
   @override
   _ProductoGeneralPageState createState() => _ProductoGeneralPageState();
@@ -65,6 +71,24 @@ class _ProductoGeneralPageState extends State<ProductoGeneralPage> {
     "Venta a pie de finca",
   ];
 
+  late TextEditingController ctrlTextPredio;
+  late TextEditingController ctrlTextGanado;
+
+  @override
+  void initState() {
+    print("IS PREDIO ${widget.isPredio}");
+    print("IS GANADO ${widget.isGanado}");
+    if (widget.isPredio && widget.isGanado) {
+      ctrlTextPredio = TextEditingController(text: "PRED_001");
+      ctrlTextGanado = TextEditingController(text: "BOV_001");
+    } else {
+      ctrlTextPredio = TextEditingController(text: "PRED_001");
+      ctrlTextGanado = TextEditingController(text: "");
+    }
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,6 +106,7 @@ class _ProductoGeneralPageState extends State<ProductoGeneralPage> {
               ),
               Container(
                 child: TextFormField(
+                  controller: ctrlTextPredio,
                   readOnly: true,
                   decoration: InputDecoration(
                     isDense: true,
@@ -102,7 +127,8 @@ class _ProductoGeneralPageState extends State<ProductoGeneralPage> {
               ),
               Container(
                 child: TextFormField(
-                  readOnly: true,
+                  readOnly: widget.isGanado,
+                  controller: ctrlTextGanado,
                   decoration: InputDecoration(
                     isDense: true,
                     hintText: "Ingrese código",

@@ -6,7 +6,13 @@ import 'package:proinnovate_flutter_app/features/core/widgets/navigator_widget.d
 import 'package:proinnovate_flutter_app/features/productividad/views/producto_home_page.dart';
 
 class ProductoListPage extends StatefulWidget {
-  const ProductoListPage({Key? key}) : super(key: key);
+  final bool isPredio;
+  final bool isGanado;
+  const ProductoListPage({
+    required this.isPredio,
+    required this.isGanado,
+    Key? key,
+  }) : super(key: key);
 
   @override
   _ProductoListPageState createState() => _ProductoListPageState();
@@ -54,7 +60,13 @@ class _ProductoListPageState extends State<ProductoListPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          NavigatorWidget.pushWithSlideUp(context, ProductoHomePage());
+          NavigatorWidget.pushWithSlideUp(
+            context,
+            ProductoHomePage(
+              isGanado: widget.isGanado,
+              isPredio: widget.isPredio,
+            ),
+          );
         },
         backgroundColor: Color(0xFF13161c),
         child: Icon(Icons.add, size: 32, color: Colors.white),
