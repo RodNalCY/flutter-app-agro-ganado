@@ -10,6 +10,11 @@ class ProductoMapaPage extends StatefulWidget {
 class _ProductoMapaPageState extends State<ProductoMapaPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(child: Center(child: Text("Producto Mapa")));
+    return SizedBox.expand(
+      child: Image.network(
+        "https://i.pinimg.com/564x/22/c2/a5/22c2a5d074bd50524200db21eff8a53a.jpg",
+        fit: BoxFit.cover,
+      ),
+    );
   }
 }
