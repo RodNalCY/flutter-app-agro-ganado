@@ -463,7 +463,7 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 25),
             ],
           ),
         ),

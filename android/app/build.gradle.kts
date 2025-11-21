@@ -37,9 +37,9 @@ android {
         // Versión objetivo de Android con la que se ha probado la app
         targetSdk = flutter.targetSdkVersion
         // Número interno de versión (incrementa en cada actualización que subas a Play Store)
-        versionCode = 5
+        versionCode = 6
         // Versión visible al usuario (lo que aparece en Play Store)
-        versionName = "1.2.7"
+        versionName = "1.2.8"
     }
 
     // Configuración de firma para release

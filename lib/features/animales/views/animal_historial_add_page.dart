@@ -230,7 +230,7 @@ class _AnimalHistorialAddPageState extends State<AnimalHistorialAddPage> {
                 ),
               ),
 
-              SizedBox(height: 20),
+              SizedBox(height: 25),
             ],
           ),
         ),

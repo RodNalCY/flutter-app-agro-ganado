@@ -238,7 +238,7 @@ class _ProductoGeneralPageState extends State<ProductoGeneralPage> {
                             decoratorProps: DropDownDecoratorProps(
                               decoration: InputDecoration(
                                 isDense: true,
-                                hintText: "Seleccione",
+                                // hintText: "Seleccione",
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15),
                                 ),
@@ -367,7 +367,7 @@ class _ProductoGeneralPageState extends State<ProductoGeneralPage> {
                 ),
               ),
 
-              SizedBox(height: 20),
+              SizedBox(height: 25),
             ],
           ),
         ),

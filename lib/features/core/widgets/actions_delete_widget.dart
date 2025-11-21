@@ -25,7 +25,7 @@ class ActionsDeleteWidget {
                   Text(
                     deleteLabel,
                     style: TextStyle(fontSize: 14),
-                    textAlign: TextAlign.justify,
+                    // textAlign: TextAlign.justify,
                   ),
                 ],
               ),
