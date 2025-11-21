@@ -610,7 +610,6 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
           context: context,
           message: "Seleccionado: $fecha",
           icon: icon,
-          color: Color(0xFF13161c),
         );
       },
       child: Card(
