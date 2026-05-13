@@ -147,33 +147,56 @@ class _AnimalFamiliarAddPageState extends State<AnimalFamiliarAddPage> {
               buildInfoProductor(),
               buildInfoProductor(),
               buildInfoProductor(),
-              SizedBox(height: 10),
+              SizedBox(height: 20),
 
-              Container(
-                width: MediaQuery.of(context).size.width,
-                child: TextButton.icon(
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Color(0xFF13161c),
-                  ),
-                  onPressed: () {
-                    FlushbarWidget.show(
-                      context: context,
-                      message: "Se guardó el familiar con éxito",
-                      icon: Icons.save,
-                      color: Colors.blue,
-                    );
-                  },
-                  icon: const Icon(Icons.add, size: 25),
-                  label: Container(
-                    padding: EdgeInsets.only(right: 10),
-                    child: const Text(
-                      'Guardar Familiar',
-                      style: TextStyle(fontSize: 18),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextButton.icon(
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Color(0xFF13161c),
+                      ),
+                      onPressed: () {
+                        FlushbarWidget.show(
+                          context: context,
+                          message: "Se guardó el familiar con éxito",
+                          icon: Icons.save,
+                        );
+                      },
+                      icon: const Icon(Icons.save, size: 25),
+                      label: Container(
+                        padding: EdgeInsets.only(right: 10),
+                        child: const Text(
+                          'Guardar',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: TextButton.icon(
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.black54,
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(Icons.close, size: 25),
+                      label: Container(
+                        padding: EdgeInsets.only(right: 10),
+                        child: const Text(
+                          'Cancelar',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
+
               SizedBox(height: 20),
             ],
           ),
@@ -182,45 +205,54 @@ class _AnimalFamiliarAddPageState extends State<AnimalFamiliarAddPage> {
     );
   }
 
-  Card buildInfoProductor() {
-    return Card(
-      elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Row(
-          children: <Widget>[
-            // Icon(Icons.apartment, size: 45),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "BOV-181293",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  Text(
-                    "Bovino hembra para reproducción",
-                    style: TextStyle(fontWeight: FontWeight.w300),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.apartment, size: 20),
-                      Text(
-                        "PREDIOS GANADEROS PRUEBAS",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ),
-                ],
+  Widget buildInfoProductor() {
+    return GestureDetector(
+      onTap: () {
+        FlushbarWidget.show(
+          context: context,
+          message: "Seleccionado: BOV-181293",
+          icon: Icons.pets,
+        );
+      },
+      child: Card(
+        elevation: 5,
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(
+            children: <Widget>[
+              // Icon(Icons.apartment, size: 45),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "BOV-181293",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      "Bovino hembra para reproducción",
+                      style: TextStyle(fontWeight: FontWeight.w300),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.apartment, size: 20),
+                        Text(
+                          "PREDIOS GANADEROS PRUEBAS",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

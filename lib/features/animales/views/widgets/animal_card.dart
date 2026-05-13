@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/actions_buttons_widget.dart';
+import 'package:proinnovate_flutter_app/features/core/widgets/actions_delete_widget.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/flushbar_widget.dart';
 import '../../models/animal.dart';
 
@@ -9,6 +10,20 @@ class AnimalCard extends StatelessWidget {
   const AnimalCard({Key? key, required this.animal}) : super(key: key);
   final String imgNotFound =
       "https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png";
+
+  String getDestinoNames() {
+    return animal.destino.map((d) => d.nombre).join(' | ');
+  }
+
+  String getEnfermedadNames() {
+    bool status = animal.ultimoRegistroMedico?.enfermedad!.isEmpty ?? true;
+    if (!status) {
+      return animal.ultimoRegistroMedico!.enfermedad!
+          .map((e) => e.nombre)
+          .join(', ');
+    }
+    return 'El animal está sano';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +55,7 @@ class AnimalCard extends StatelessWidget {
                     animal.codigo,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
-                  Text(animal.destino.descripcion),
+                  Text(getDestinoNames()),
                   Divider(),
                   // Row(
                   //   children: [
@@ -55,12 +70,7 @@ class AnimalCard extends StatelessWidget {
                       SizedBox(width: 5),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            animal.ultimoRegistroMedico?.enfermedad?.nombre ??
-                                'El animal está sano',
-                          ),
-                        ],
+                        children: [Text(getEnfermedadNames())],
                       ),
                     ],
                   ),
@@ -82,18 +92,21 @@ class AnimalCard extends StatelessWidget {
                     onEdit: () {
                       FlushbarWidget.show(
                         context: context,
-                        message: "Editar Activado: " + animal.codigo,
+                        message:
+                            "Editar: " + animal.codigo + " (en desarrollo)",
                         icon: Icons.info,
                         color: Colors.blue,
                       );
                     },
 
                     onDelete: () {
-                      FlushbarWidget.show(
+                      ActionsDeleteWidget.show(
                         context: context,
-                        message: "Eliminar Activado: " + animal.codigo,
-                        icon: Icons.info,
-                        color: Colors.red,
+                        deleteLabel:
+                            '¿Deseas eliminar el animal ${animal.codigo}?',
+                        onDelete: () {
+                          // Acción al eliminar
+                        },
                       );
                     },
                   ),

@@ -602,7 +602,7 @@ class _PredioAddPageState extends State<PredioAddPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 25),
             ],
           ),
         ),

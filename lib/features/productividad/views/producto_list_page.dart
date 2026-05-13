@@ -3,16 +3,22 @@ import 'package:proinnovate_flutter_app/features/core/widgets/actions_buttons_wi
 import 'package:proinnovate_flutter_app/features/core/widgets/actions_delete_widget.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/flushbar_widget.dart';
 import 'package:proinnovate_flutter_app/features/core/widgets/navigator_widget.dart';
-import 'predio_home_page.dart';
+import 'package:proinnovate_flutter_app/features/productividad/views/producto_home_page.dart';
 
-class PredioListPage extends StatefulWidget {
-  const PredioListPage({Key? key}) : super(key: key);
+class ProductoListPage extends StatefulWidget {
+  final bool isPredio;
+  final bool isGanado;
+  const ProductoListPage({
+    required this.isPredio,
+    required this.isGanado,
+    Key? key,
+  }) : super(key: key);
 
   @override
-  _PredioListPageState createState() => _PredioListPageState();
+  _ProductoListPageState createState() => _ProductoListPageState();
 }
 
-class _PredioListPageState extends State<PredioListPage> {
+class _ProductoListPageState extends State<ProductoListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +32,7 @@ class _PredioListPageState extends State<PredioListPage> {
                 preferredSize: const Size.fromHeight(60),
                 child: TextField(
                   decoration: InputDecoration(
-                    hintText: "Buscar predio...",
+                    hintText: "Buscar producto...",
                     prefixIcon: Icon(Icons.search),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -54,7 +60,13 @@ class _PredioListPageState extends State<PredioListPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          NavigatorWidget.pushWithSlideUp(context, PredioHomePage());
+          NavigatorWidget.pushWithSlideUp(
+            context,
+            ProductoHomePage(
+              isGanado: widget.isGanado,
+              isPredio: widget.isPredio,
+            ),
+          );
         },
         backgroundColor: Color(0xFF13161c),
         child: Icon(Icons.add, size: 32, color: Colors.white),
@@ -75,7 +87,7 @@ class _PredioListPageState extends State<PredioListPage> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
-                "https://imagenes.eleconomista.com.mx/files/image_768_768/uploads/2023/03/06/66e45e0535ec3.jpeg",
+                "https://scontent.flim2-2.fna.fbcdn.net/v/t1.6435-9/129629155_1606298119575963_6127348836122216384_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=102&ccb=1-7&_nc_sid=3a1ebe&_nc_ohc=5_BmOZPMd6EQ7kNvwFUXrOk&_nc_oc=Adn54beC1u5r09NOJFXv8G14ooh7adNyt7qco31w_SVzbrkp0KCjRmfXcAkpXyIMCy81tBnluZ5iSu2Nm8QsMAnV&_nc_zt=23&_nc_ht=scontent.flim2-2.fna&_nc_gid=uAg6PatWKJxmCbflrSDZDQ&oh=00_AfjG2s8Gj5kAyoQpnuXP5Ig5grayUjp0NbVxrjTf2AX-rg&oe=6946F339",
                 fit: BoxFit.cover,
               ),
             ),
@@ -87,11 +99,11 @@ class _PredioListPageState extends State<PredioListPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    "CENTRO GANADERO S.A.",
+                    "LEC-123456",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                   ),
                   Text(
-                    "PRE1234567",
+                    "Leche para venta internacional",
                     style: TextStyle(fontWeight: FontWeight.w300),
                   ),
                   Divider(),
@@ -101,19 +113,19 @@ class _PredioListPageState extends State<PredioListPage> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
                       Icon(Icons.pets, size: 20),
-                      Text("1240 animales", style: TextStyle(fontSize: 16)),
+                      Text("BOV-2345678", style: TextStyle(fontSize: 16)),
                     ],
                   ),
                   // ROW ENFERMEDAD
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Icon(Icons.location_on, size: 20),
+                      Icon(Icons.domain, size: 20),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Arequipa, Arequipa, Arequipa",
+                            "GLORIA S.A",
                             // style: TextStyle(fontWeight: FontWeight.w300),
                           ),
                         ],
@@ -146,26 +158,6 @@ class _PredioListPageState extends State<PredioListPage> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  void snackbarEliminar() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text("Registro Eliminado !!!"),
-        duration: Duration(seconds: 2), // cuánto tiempo se muestra
-        behavior: SnackBarBehavior.floating, // flotante o fijo abajo
-      ),
-    );
-  }
-
-  void snackbarEditar() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text("Registro Editado !!!"),
-        duration: Duration(seconds: 2), // cuánto tiempo se muestra
-        behavior: SnackBarBehavior.floating, // flotante o fijo abajo
       ),
     );
   }

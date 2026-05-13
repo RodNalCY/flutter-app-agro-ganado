@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proinnovate_flutter_app/features/animales/views/animal_list_page.dart';
+import 'package:proinnovate_flutter_app/features/productividad/views/producto_list_page.dart';
 import 'predio_add_page.dart';
 import 'predio_propietario_list_page.dart';
 
@@ -14,7 +15,7 @@ class _PredioHomePageState extends State<PredioHomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 4,
       child: Scaffold(
         appBar: AppBar(
           title: Text(
@@ -32,6 +33,7 @@ class _PredioHomePageState extends State<PredioHomePage> {
             tabs: [
               Tab(icon: Icon(Icons.assignment), text: 'General'),
               Tab(icon: Icon(Icons.pets), text: 'Animales'),
+              Tab(icon: Icon(Icons.shopping_cart), text: 'Productos'),
               Tab(icon: Icon(Icons.person), text: 'Propietarios'),
             ],
           ),
@@ -41,6 +43,7 @@ class _PredioHomePageState extends State<PredioHomePage> {
           children: [
             PredioAddPage(statusHeader: false),
             AnimalListPage(statusView: true),
+            ProductoListPage(isPredio: true, isGanado: false),
             PredioPropietarioListPage(),
           ],
         ),

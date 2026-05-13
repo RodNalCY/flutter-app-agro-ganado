@@ -112,12 +112,12 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                           foregroundColor: Colors.white,
                           backgroundColor: Color(0xFF13161c),
                         ),
-                        onPressed: () {
-                          FlushbarWidget.show(
-                            context: context,
-                            message: "Sincronizando...",
-                            icon: Icons.sync,
-                          );
+                        onPressed: () async {
+                          // await buildDialogSync(context);
+                          String getValueRadio = "";
+                          final result = await buildDialogSync(context);
+                          if (result != null) getValueRadio = result;
+                          print("getValueRadio: ${getValueRadio}");
                         },
                         icon: const Icon(Icons.sync, size: 25),
                         label: const Text(
@@ -437,6 +437,33 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
                   ),
                 ),
               ),
+              SizedBox(height: 20),
+              // BUTTON AGREGAR NUEVO PREDIO
+              Container(
+                width: MediaQuery.of(context).size.width,
+                child: TextButton.icon(
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Color(0xFF13161c),
+                  ),
+                  onPressed: () {
+                    FlushbarWidget.show(
+                      context: context,
+                      message: "Animal guardado correctamente",
+                      icon: Icons.check_circle,
+                    );
+                  },
+                  icon: const Icon(Icons.add, size: 25),
+                  label: Container(
+                    padding: EdgeInsets.only(right: 10),
+                    child: const Text(
+                      'Guardar Animal',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 25),
             ],
           ),
         ),
@@ -451,7 +478,6 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
           context: context,
           message: "Predio seleccionado con exito",
           icon: Icons.check_circle,
-          color: Color(0xFF13161c),
         );
       },
       child: Card(
@@ -493,6 +519,85 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
     );
   }
 
+  Future<String?> buildDialogSync(BuildContext context) {
+    return showDialog<String>(
+      context: context,
+      builder: (context) {
+        String selectedRadioValue = "A";
+
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              title: const Text(
+                'Sincronizar un dispositivo',
+                style: TextStyle(fontSize: 20),
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  RadioGroup<String>(
+                    groupValue:
+                        selectedRadioValue, // State variable holding the selected value
+                    onChanged: (String? newValue) {
+                      setStateDialog(() {
+                        selectedRadioValue =
+                            newValue!; // Update the state when a new option is selected
+                      });
+                    },
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: [
+                            Radio<String>(value: "A"),
+                            Text("Dispositivo A"),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Radio<String>(value: "B"),
+                            Text("Dispositivo B"),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Radio<String>(value: "C"),
+                            Text("Dispositivo C"),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  // Text('Seleccionado: $selectedRadioValue'),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  style: TextButton.styleFrom(foregroundColor: Colors.black54),
+                  onPressed: () => Navigator.of(context).pop(null),
+                  child: const Text('Cancelar'),
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: Color(0xFF13161c),
+                    foregroundColor: Colors.white,
+                  ),
+                  onPressed: () =>
+                      Navigator.of(context).pop(selectedRadioValue),
+                  child: const Text('Aceptar'),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
   Widget buildCardDateInfo(
     BuildContext context,
     String fecha,
@@ -505,7 +610,6 @@ class _AnimalAddPageState extends State<AnimalAddPage> {
           context: context,
           message: "Seleccionado: $fecha",
           icon: icon,
-          color: Color(0xFF13161c),
         );
       },
       child: Card(

@@ -24,7 +24,7 @@ class _PredioPropietarioListPageState extends State<PredioPropietarioListPage> {
                 preferredSize: const Size.fromHeight(60),
                 child: TextField(
                   decoration: InputDecoration(
-                    hintText: "Buscar predio...",
+                    hintText: "Buscar propietario...",
                     prefixIcon: Icon(Icons.search),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),

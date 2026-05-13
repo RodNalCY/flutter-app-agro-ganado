@@ -5,7 +5,7 @@ class Animal {
   final String fechaNacimiento;
   final String? imagenUrl;
   final TipoGanado tipoGanado;
-  final Destino destino;
+  final List<Destino> destino;
   final UltimoRegistroMedico? ultimoRegistroMedico;
 
   Animal({
@@ -27,7 +27,9 @@ class Animal {
       fechaNacimiento: json['fecha_nacimiento'] ?? '',
       imagenUrl: json['imagen_url'],
       tipoGanado: TipoGanado.fromJson(json['tipo_ganado']),
-      destino: Destino.fromJson(json['destino']),
+      destino: (json['destinos'] as List)
+          .map((destinoJson) => Destino.fromJson(destinoJson))
+          .toList(),
       ultimoRegistroMedico: json['ultimo_registro_medico'] != null
           ? UltimoRegistroMedico.fromJson(json['ultimo_registro_medico'])
           : null,
@@ -81,19 +83,17 @@ class TipoGanado {
 class UltimoRegistroMedico {
   final int id;
   final int animalId;
-  final int enfermedadId;
   final String fechaRegistro;
   final String? fechaFin;
   final String observaciones;
   final String estado;
   final String costoTratamiento;
   final String veterinario;
-  final Enfermedad? enfermedad; //  también puede ser null
+  final List<Enfermedad>? enfermedad; //  también puede ser null
 
   UltimoRegistroMedico({
     required this.id,
     required this.animalId,
-    required this.enfermedadId,
     required this.fechaRegistro,
     this.fechaFin,
     required this.observaciones,
@@ -107,15 +107,16 @@ class UltimoRegistroMedico {
     return UltimoRegistroMedico(
       id: json['id'],
       animalId: json['animal_id'],
-      enfermedadId: json['enfermedad_id'],
       fechaRegistro: json['fecha_registro'] ?? '',
       fechaFin: json['fecha_fin'],
       observaciones: json['observaciones'] ?? '',
       estado: json['estado'] ?? '',
       costoTratamiento: json['costo_tratamiento'] ?? '',
       veterinario: json['veterinario'] ?? '',
-      enfermedad: json['enfermedad'] != null
-          ? Enfermedad.fromJson(json['enfermedad'])
+      enfermedad: json['enfermedades'] != null
+          ? (json['enfermedades'] as List)
+                .map((enfermedadJson) => Enfermedad.fromJson(enfermedadJson))
+                .toList()
           : null,
     );
   }
